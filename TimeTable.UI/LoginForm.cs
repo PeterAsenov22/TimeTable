@@ -16,5 +16,13 @@ namespace TimeTable.UI
         {
             InitializeComponent();
         }
+
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.Closed += (s, args) => this.Close();
+            mainForm.Show();
+            this.Hide();
+        }
     }
 }
