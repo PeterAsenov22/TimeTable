@@ -44,6 +44,7 @@
             this.registerBtn.TabIndex = 10;
             this.registerBtn.Text = "Register";
             this.registerBtn.UseVisualStyleBackColor = true;
+            this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
             // 
             // passwordLabel
             // 
@@ -86,6 +87,7 @@
             this.cancelBtn.TabIndex = 11;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // RegisterForm
             // 

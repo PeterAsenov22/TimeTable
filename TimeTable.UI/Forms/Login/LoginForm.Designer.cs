@@ -88,6 +88,7 @@
             this.registerLinkLabel.TabIndex = 5;
             this.registerLinkLabel.TabStop = true;
             this.registerLinkLabel.Text = "If you do not have an account, click here to register!";
+            this.registerLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.registerLinkLabel_LinkClicked);
             // 
             // LoginForm
             // 
