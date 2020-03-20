@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TimeTable.UI.Forms.Project;
 
 namespace TimeTable.UI
 {
     public partial class MainForm : Form
     {
+        private ProjectRegisterForm projectRegisterForm;
         public MainForm()
         {
             InitializeComponent();
@@ -40,6 +42,18 @@ namespace TimeTable.UI
 
             dataGridView1.Columns.Add(moreButtonColumn);
             dataGridView1.Rows.Add(row);
+        }
+
+        private void registerProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            projectRegisterForm = new ProjectRegisterForm();
+            projectRegisterForm.RegisterEventHandler += ProjectRegisterForm_RegisterEventHandler;
+            projectRegisterForm.Show();
+        }
+
+        private void ProjectRegisterForm_RegisterEventHandler(object sender, ProjectRegisterForm.RegisterEventArgs args)
+        {
+            dataGridView1.Rows.Add(args.Data);
         }
     }
 }

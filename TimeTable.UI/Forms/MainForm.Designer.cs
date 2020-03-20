@@ -95,8 +95,9 @@
             // registerProjectToolStripMenuItem
             // 
             this.registerProjectToolStripMenuItem.Name = "registerProjectToolStripMenuItem";
-            this.registerProjectToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.registerProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.registerProjectToolStripMenuItem.Text = "Register Project";
+            this.registerProjectToolStripMenuItem.Click += new System.EventHandler(this.registerProjectToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
