@@ -36,7 +36,9 @@ namespace TimeTable.UI.Forms.Project
                 "23.05.2020",
                 "220"
             };
+
             RegisterEventHandler?.Invoke(this, args);
+            MessageBox.Show("Project 987654 was successfully registered!", "Successful Project Registration", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
