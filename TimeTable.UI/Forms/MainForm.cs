@@ -66,7 +66,7 @@ namespace TimeTable.UI
         private void ProjectEditForm_EditEventHandler(object sender, ProjectEditForm.EditEventArgs args)
         {
             dataGridView1.Rows.Remove(dataGridView1.Rows[args.RowIndex]);
-            dataGridView1.Rows.Add(args.Data);
+            dataGridView1.Rows.Insert(args.RowIndex, args.Data);
             MessageBox.Show($"Project {args.Data[0]} was successfully edited!", "Successful Project Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
