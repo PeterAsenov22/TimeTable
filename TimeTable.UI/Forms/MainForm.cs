@@ -25,6 +25,20 @@ namespace TimeTable.UI
             searchComboBox.DataSource = searchByItems;
             searchComboBox.SelectedIndex = 0;
 
+            DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
+            editButtonColumn.Name = "edit";
+            editButtonColumn.HeaderText = "";
+            editButtonColumn.Text = "Edit";
+            editButtonColumn.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(editButtonColumn);
+
+            DataGridViewButtonColumn moreButtonColumn = new DataGridViewButtonColumn();
+            moreButtonColumn.Name = "more";
+            moreButtonColumn.HeaderText = "";
+            moreButtonColumn.Text = "More";
+            moreButtonColumn.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(moreButtonColumn);
+
             string[] row = {
                 "123456",
                 "Demo Project",
@@ -34,13 +48,6 @@ namespace TimeTable.UI
                 "120"
             };
 
-            DataGridViewButtonColumn moreButtonColumn = new DataGridViewButtonColumn();
-            moreButtonColumn.Name = "more";
-            moreButtonColumn.HeaderText = "";
-            moreButtonColumn.Text = "More";
-            moreButtonColumn.UseColumnTextForButtonValue = true;
-
-            dataGridView1.Columns.Add(moreButtonColumn);
             dataGridView1.Rows.Add(row);
         }
 
@@ -54,6 +61,29 @@ namespace TimeTable.UI
         private void ProjectRegisterForm_RegisterEventHandler(object sender, ProjectRegisterForm.RegisterEventArgs args)
         {
             dataGridView1.Rows.Add(args.Data);
+        }
+
+        private void ProjectEditForm_EditEventHandler(object sender, ProjectEditForm.EditEventArgs args)
+        {
+            dataGridView1.Rows.Remove(dataGridView1.Rows[args.RowIndex]);
+            dataGridView1.Rows.Add(args.Data);
+            MessageBox.Show($"Project {args.Data[0]} was successfully edited!", "Successful Project Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                if (e.ColumnIndex == 6)
+                {
+                    ProjectEditForm projectEditForm = new ProjectEditForm(e.RowIndex, dataGridView1[0, e.RowIndex].Value.ToString());
+                    projectEditForm.EditEventHandler += ProjectEditForm_EditEventHandler;
+                    projectEditForm.Show();
+                }
+            }
         }
     }
 }
