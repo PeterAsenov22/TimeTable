@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.endDateLabel = new System.Windows.Forms.Label();
-            this.startDateLabel = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.maxWorkingHoursLabel = new System.Windows.Forms.Label();
-            this.descriptionLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.registerProjectBtn = new System.Windows.Forms.Button();
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.projectIdLabel = new System.Windows.Forms.Label();
-            this.passwordTextBox = new System.Windows.Forms.TextBox();
-            this.projectIdTextBox = new System.Windows.Forms.TextBox();
+            this.lastNameLabel = new System.Windows.Forms.Label();
+            this.positionLabel = new System.Windows.Forms.Label();
+            this.personalNumberLabel = new System.Windows.Forms.Label();
+            this.positionTextBox = new System.Windows.Forms.TextBox();
+            this.employeePersonalNumberTextBox = new System.Windows.Forms.TextBox();
+            this.registerEmployeeBtn = new System.Windows.Forms.Button();
+            this.secondNameLabel = new System.Windows.Forms.Label();
+            this.employeeNameLabel = new System.Windows.Forms.Label();
+            this.secondNameTextBox = new System.Windows.Forms.TextBox();
+            this.employeeNameTextBox = new System.Windows.Forms.TextBox();
+            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.endDateTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // endDateLabel
@@ -52,122 +52,124 @@
             this.endDateLabel.TabIndex = 31;
             this.endDateLabel.Text = "End Date";
             // 
-            // startDateLabel
+            // lastNameLabel
             // 
-            this.startDateLabel.AutoSize = true;
-            this.startDateLabel.Location = new System.Drawing.Point(135, 238);
-            this.startDateLabel.Name = "startDateLabel";
-            this.startDateLabel.Size = new System.Drawing.Size(72, 17);
-            this.startDateLabel.TabIndex = 30;
-            this.startDateLabel.Text = "Start Date";
+            this.lastNameLabel.AutoSize = true;
+            this.lastNameLabel.Location = new System.Drawing.Point(135, 238);
+            this.lastNameLabel.Name = "lastNameLabel";
+            this.lastNameLabel.Size = new System.Drawing.Size(76, 17);
+            this.lastNameLabel.TabIndex = 30;
+            this.lastNameLabel.Text = "Last Name";
             // 
-            // dateTimePicker2
+            // positionLabel
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(453, 262);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(213, 22);
-            this.dateTimePicker2.TabIndex = 29;
+            this.positionLabel.AutoSize = true;
+            this.positionLabel.Location = new System.Drawing.Point(450, 159);
+            this.positionLabel.Name = "positionLabel";
+            this.positionLabel.Size = new System.Drawing.Size(58, 17);
+            this.positionLabel.TabIndex = 27;
+            this.positionLabel.Text = "Position";
             // 
-            // dateTimePicker1
+            // personalNumberLabel
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(138, 262);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(213, 22);
-            this.dateTimePicker1.TabIndex = 28;
+            this.personalNumberLabel.AutoSize = true;
+            this.personalNumberLabel.Location = new System.Drawing.Point(450, 84);
+            this.personalNumberLabel.Name = "personalNumberLabel";
+            this.personalNumberLabel.Size = new System.Drawing.Size(118, 17);
+            this.personalNumberLabel.TabIndex = 26;
+            this.personalNumberLabel.Text = "Personal Number";
             // 
-            // maxWorkingHoursLabel
+            // positionTextBox
             // 
-            this.maxWorkingHoursLabel.AutoSize = true;
-            this.maxWorkingHoursLabel.Location = new System.Drawing.Point(450, 159);
-            this.maxWorkingHoursLabel.Name = "maxWorkingHoursLabel";
-            this.maxWorkingHoursLabel.Size = new System.Drawing.Size(131, 17);
-            this.maxWorkingHoursLabel.TabIndex = 27;
-            this.maxWorkingHoursLabel.Text = "Max Working Hours";
+            this.positionTextBox.Location = new System.Drawing.Point(453, 185);
+            this.positionTextBox.Name = "positionTextBox";
+            this.positionTextBox.PasswordChar = '*';
+            this.positionTextBox.Size = new System.Drawing.Size(213, 22);
+            this.positionTextBox.TabIndex = 25;
             // 
-            // descriptionLabel
+            // employeePersonalNumberTextBox
             // 
-            this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(450, 84);
-            this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(79, 17);
-            this.descriptionLabel.TabIndex = 26;
-            this.descriptionLabel.Text = "Description";
+            this.employeePersonalNumberTextBox.Location = new System.Drawing.Point(453, 109);
+            this.employeePersonalNumberTextBox.Name = "employeePersonalNumberTextBox";
+            this.employeePersonalNumberTextBox.Size = new System.Drawing.Size(213, 22);
+            this.employeePersonalNumberTextBox.TabIndex = 24;
             // 
-            // textBox1
+            // registerEmployeeBtn
             // 
-            this.textBox1.Location = new System.Drawing.Point(453, 185);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PasswordChar = '*';
-            this.textBox1.Size = new System.Drawing.Size(213, 22);
-            this.textBox1.TabIndex = 25;
+            this.registerEmployeeBtn.Location = new System.Drawing.Point(324, 334);
+            this.registerEmployeeBtn.Name = "registerEmployeeBtn";
+            this.registerEmployeeBtn.Size = new System.Drawing.Size(159, 33);
+            this.registerEmployeeBtn.TabIndex = 23;
+            this.registerEmployeeBtn.Text = "Register";
+            this.registerEmployeeBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // secondNameLabel
             // 
-            this.textBox2.Location = new System.Drawing.Point(453, 109);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(213, 22);
-            this.textBox2.TabIndex = 24;
+            this.secondNameLabel.AutoSize = true;
+            this.secondNameLabel.Location = new System.Drawing.Point(135, 159);
+            this.secondNameLabel.Name = "secondNameLabel";
+            this.secondNameLabel.Size = new System.Drawing.Size(95, 17);
+            this.secondNameLabel.TabIndex = 22;
+            this.secondNameLabel.Text = "Second name";
             // 
-            // registerProjectBtn
+            // employeeNameLabel
             // 
-            this.registerProjectBtn.Location = new System.Drawing.Point(324, 334);
-            this.registerProjectBtn.Name = "registerProjectBtn";
-            this.registerProjectBtn.Size = new System.Drawing.Size(159, 33);
-            this.registerProjectBtn.TabIndex = 23;
-            this.registerProjectBtn.Text = "Register Project";
-            this.registerProjectBtn.UseVisualStyleBackColor = true;
+            this.employeeNameLabel.AutoSize = true;
+            this.employeeNameLabel.Location = new System.Drawing.Point(135, 84);
+            this.employeeNameLabel.Name = "employeeNameLabel";
+            this.employeeNameLabel.Size = new System.Drawing.Size(45, 17);
+            this.employeeNameLabel.TabIndex = 21;
+            this.employeeNameLabel.Text = "Name";
             // 
-            // nameLabel
+            // secondNameTextBox
             // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(135, 159);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(45, 17);
-            this.nameLabel.TabIndex = 22;
-            this.nameLabel.Text = "Name";
+            this.secondNameTextBox.Location = new System.Drawing.Point(138, 185);
+            this.secondNameTextBox.Name = "secondNameTextBox";
+            this.secondNameTextBox.PasswordChar = '*';
+            this.secondNameTextBox.Size = new System.Drawing.Size(213, 22);
+            this.secondNameTextBox.TabIndex = 20;
             // 
-            // projectIdLabel
+            // employeeNameTextBox
             // 
-            this.projectIdLabel.AutoSize = true;
-            this.projectIdLabel.Location = new System.Drawing.Point(135, 84);
-            this.projectIdLabel.Name = "projectIdLabel";
-            this.projectIdLabel.Size = new System.Drawing.Size(67, 17);
-            this.projectIdLabel.TabIndex = 21;
-            this.projectIdLabel.Text = "Project Id";
+            this.employeeNameTextBox.Location = new System.Drawing.Point(138, 109);
+            this.employeeNameTextBox.Name = "employeeNameTextBox";
+            this.employeeNameTextBox.Size = new System.Drawing.Size(213, 22);
+            this.employeeNameTextBox.TabIndex = 19;
             // 
-            // passwordTextBox
+            // lastNameTextBox
             // 
-            this.passwordTextBox.Location = new System.Drawing.Point(138, 185);
-            this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.PasswordChar = '*';
-            this.passwordTextBox.Size = new System.Drawing.Size(213, 22);
-            this.passwordTextBox.TabIndex = 20;
+            this.lastNameTextBox.Location = new System.Drawing.Point(138, 262);
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.PasswordChar = '*';
+            this.lastNameTextBox.Size = new System.Drawing.Size(213, 22);
+            this.lastNameTextBox.TabIndex = 32;
             // 
-            // projectIdTextBox
+            // endDateTextBox
             // 
-            this.projectIdTextBox.Location = new System.Drawing.Point(138, 109);
-            this.projectIdTextBox.Name = "projectIdTextBox";
-            this.projectIdTextBox.Size = new System.Drawing.Size(213, 22);
-            this.projectIdTextBox.TabIndex = 19;
+            this.endDateTextBox.Location = new System.Drawing.Point(453, 262);
+            this.endDateTextBox.Name = "endDateTextBox";
+            this.endDateTextBox.PasswordChar = '*';
+            this.endDateTextBox.Size = new System.Drawing.Size(213, 22);
+            this.endDateTextBox.TabIndex = 33;
             // 
             // EmployeeRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.endDateTextBox);
+            this.Controls.Add(this.lastNameTextBox);
             this.Controls.Add(this.endDateLabel);
-            this.Controls.Add(this.startDateLabel);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.maxWorkingHoursLabel);
-            this.Controls.Add(this.descriptionLabel);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.registerProjectBtn);
-            this.Controls.Add(this.nameLabel);
-            this.Controls.Add(this.projectIdLabel);
-            this.Controls.Add(this.passwordTextBox);
-            this.Controls.Add(this.projectIdTextBox);
+            this.Controls.Add(this.lastNameLabel);
+            this.Controls.Add(this.positionLabel);
+            this.Controls.Add(this.personalNumberLabel);
+            this.Controls.Add(this.positionTextBox);
+            this.Controls.Add(this.employeePersonalNumberTextBox);
+            this.Controls.Add(this.registerEmployeeBtn);
+            this.Controls.Add(this.secondNameLabel);
+            this.Controls.Add(this.employeeNameLabel);
+            this.Controls.Add(this.secondNameTextBox);
+            this.Controls.Add(this.employeeNameTextBox);
             this.Name = "EmployeeRegisterForm";
             this.Text = "EmployeeRegisterForm";
             this.ResumeLayout(false);
@@ -178,17 +180,17 @@
         #endregion
 
         private System.Windows.Forms.Label endDateLabel;
-        private System.Windows.Forms.Label startDateLabel;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label maxWorkingHoursLabel;
-        private System.Windows.Forms.Label descriptionLabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button registerProjectBtn;
-        private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.Label projectIdLabel;
-        private System.Windows.Forms.TextBox passwordTextBox;
-        private System.Windows.Forms.TextBox projectIdTextBox;
+        private System.Windows.Forms.Label lastNameLabel;
+        private System.Windows.Forms.Label positionLabel;
+        private System.Windows.Forms.Label personalNumberLabel;
+        private System.Windows.Forms.TextBox positionTextBox;
+        private System.Windows.Forms.TextBox employeePersonalNumberTextBox;
+        private System.Windows.Forms.Button registerEmployeeBtn;
+        private System.Windows.Forms.Label secondNameLabel;
+        private System.Windows.Forms.Label employeeNameLabel;
+        private System.Windows.Forms.TextBox secondNameTextBox;
+        private System.Windows.Forms.TextBox employeeNameTextBox;
+        private System.Windows.Forms.TextBox lastNameTextBox;
+        private System.Windows.Forms.TextBox endDateTextBox;
     }
 }
