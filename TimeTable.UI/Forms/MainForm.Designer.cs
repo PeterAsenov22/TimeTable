@@ -75,13 +75,13 @@
             // registerEmployeeToolStripMenuItem
             // 
             this.registerEmployeeToolStripMenuItem.Name = "registerEmployeeToolStripMenuItem";
-            this.registerEmployeeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.registerEmployeeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.registerEmployeeToolStripMenuItem.Text = "Register Employee";
             // 
             // searchEmployeesToolStripMenuItem
             // 
             this.searchEmployeesToolStripMenuItem.Name = "searchEmployeesToolStripMenuItem";
-            this.searchEmployeesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.searchEmployeesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.searchEmployeesToolStripMenuItem.Text = "Search Employees";
             // 
             // projectsToolStripMenuItem
@@ -95,7 +95,7 @@
             // registerProjectToolStripMenuItem
             // 
             this.registerProjectToolStripMenuItem.Name = "registerProjectToolStripMenuItem";
-            this.registerProjectToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.registerProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.registerProjectToolStripMenuItem.Text = "Register Project";
             this.registerProjectToolStripMenuItem.Click += new System.EventHandler(this.registerProjectToolStripMenuItem_Click);
             // 
