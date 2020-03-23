@@ -83,6 +83,11 @@ namespace TimeTable.UI
                     projectEditForm.EditEventHandler += ProjectEditForm_EditEventHandler;
                     projectEditForm.Show();
                 }
+                else if (e.ColumnIndex == 7)
+                {
+                    ProjectInfoForm projectInfoForm = new ProjectInfoForm(dataGridView1[0, e.RowIndex].Value.ToString());
+                    projectInfoForm.Show();
+                }
             }
         }
     }
