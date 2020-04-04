@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.findEmployeeGroupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.searchComboBox = new System.Windows.Forms.ComboBox();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.egn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.position = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hireDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.findEmployeeGroupBox = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.searchComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.findEmployeeGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -60,52 +60,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1343, 300);
             this.dataGridView1.TabIndex = 4;
-            // 
-            // findEmployeeGroupBox
-            // 
-            this.findEmployeeGroupBox.Controls.Add(this.label1);
-            this.findEmployeeGroupBox.Controls.Add(this.searchButton);
-            this.findEmployeeGroupBox.Controls.Add(this.searchTextBox);
-            this.findEmployeeGroupBox.Controls.Add(this.searchComboBox);
-            this.findEmployeeGroupBox.Location = new System.Drawing.Point(23, 40);
-            this.findEmployeeGroupBox.Name = "findEmployeeGroupBox";
-            this.findEmployeeGroupBox.Size = new System.Drawing.Size(706, 68);
-            this.findEmployeeGroupBox.TabIndex = 3;
-            this.findEmployeeGroupBox.TabStop = false;
-            this.findEmployeeGroupBox.Text = "Find Employee";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(121, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Find By:";
-            // 
-            // searchButton
-            // 
-            this.searchButton.Location = new System.Drawing.Point(588, 19);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(85, 30);
-            this.searchButton.TabIndex = 2;
-            this.searchButton.Text = "Search";
-            this.searchButton.UseVisualStyleBackColor = true;
-            // 
-            // searchTextBox
-            // 
-            this.searchTextBox.Location = new System.Drawing.Point(385, 23);
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(168, 22);
-            this.searchTextBox.TabIndex = 1;
-            // 
-            // searchComboBox
-            // 
-            this.searchComboBox.FormattingEnabled = true;
-            this.searchComboBox.Location = new System.Drawing.Point(186, 23);
-            this.searchComboBox.Name = "searchComboBox";
-            this.searchComboBox.Size = new System.Drawing.Size(156, 24);
-            this.searchComboBox.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // name
             // 
@@ -155,6 +110,52 @@
             this.hireDate.ReadOnly = true;
             this.hireDate.Width = 125;
             // 
+            // findEmployeeGroupBox
+            // 
+            this.findEmployeeGroupBox.Controls.Add(this.label1);
+            this.findEmployeeGroupBox.Controls.Add(this.searchButton);
+            this.findEmployeeGroupBox.Controls.Add(this.searchTextBox);
+            this.findEmployeeGroupBox.Controls.Add(this.searchComboBox);
+            this.findEmployeeGroupBox.Location = new System.Drawing.Point(23, 40);
+            this.findEmployeeGroupBox.Name = "findEmployeeGroupBox";
+            this.findEmployeeGroupBox.Size = new System.Drawing.Size(706, 68);
+            this.findEmployeeGroupBox.TabIndex = 3;
+            this.findEmployeeGroupBox.TabStop = false;
+            this.findEmployeeGroupBox.Text = "Find Employee";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(121, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 17);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Find By:";
+            // 
+            // searchButton
+            // 
+            this.searchButton.Location = new System.Drawing.Point(588, 19);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(85, 30);
+            this.searchButton.TabIndex = 2;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Location = new System.Drawing.Point(385, 23);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(168, 22);
+            this.searchTextBox.TabIndex = 1;
+            // 
+            // searchComboBox
+            // 
+            this.searchComboBox.FormattingEnabled = true;
+            this.searchComboBox.Location = new System.Drawing.Point(186, 23);
+            this.searchComboBox.Name = "searchComboBox";
+            this.searchComboBox.Size = new System.Drawing.Size(156, 24);
+            this.searchComboBox.TabIndex = 0;
+            // 
             // EmployeeMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -164,6 +165,7 @@
             this.Controls.Add(this.findEmployeeGroupBox);
             this.Name = "EmployeeMainForm";
             this.Text = "EmployeeSearchForm";
+            this.Load += new System.EventHandler(this.EmployeeMainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.findEmployeeGroupBox.ResumeLayout(false);
             this.findEmployeeGroupBox.PerformLayout();

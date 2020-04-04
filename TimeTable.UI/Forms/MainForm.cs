@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TimeTable.UI.Forms.Employee;
 using TimeTable.UI.Forms.Project;
 
 namespace TimeTable.UI
@@ -89,6 +90,18 @@ namespace TimeTable.UI
                     projectInfoForm.Show();
                 }
             }
+        }
+
+        private void registerEmployeeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeRegisterForm employeeRegisterForm = new EmployeeRegisterForm();
+            employeeRegisterForm.Show();
+        }
+
+        private void searchEmployeesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeMainForm employeeMainForm = new EmployeeMainForm();
+            employeeMainForm.Show();
         }
     }
 }
