@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.endDateLabel = new System.Windows.Forms.Label();
+            this.hireDateLabel = new System.Windows.Forms.Label();
             this.lastNameLabel = new System.Windows.Forms.Label();
             this.positionLabel = new System.Windows.Forms.Label();
-            this.personalNumberLabel = new System.Windows.Forms.Label();
+            this.egnLabel = new System.Windows.Forms.Label();
             this.positionTextBox = new System.Windows.Forms.TextBox();
-            this.employeePersonalNumberTextBox = new System.Windows.Forms.TextBox();
+            this.egnTextBox = new System.Windows.Forms.TextBox();
             this.registerEmployeeBtn = new System.Windows.Forms.Button();
-            this.secondNameLabel = new System.Windows.Forms.Label();
-            this.employeeNameLabel = new System.Windows.Forms.Label();
-            this.secondNameTextBox = new System.Windows.Forms.TextBox();
-            this.employeeNameTextBox = new System.Windows.Forms.TextBox();
+            this.surnameLabel = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.surnameTextBox = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
-            this.endDateTextBox = new System.Windows.Forms.TextBox();
+            this.hireDateTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // endDateLabel
+            // hireDateLabel
             // 
-            this.endDateLabel.AutoSize = true;
-            this.endDateLabel.Location = new System.Drawing.Point(450, 238);
-            this.endDateLabel.Name = "endDateLabel";
-            this.endDateLabel.Size = new System.Drawing.Size(67, 17);
-            this.endDateLabel.TabIndex = 31;
-            this.endDateLabel.Text = "End Date";
+            this.hireDateLabel.AutoSize = true;
+            this.hireDateLabel.Location = new System.Drawing.Point(450, 238);
+            this.hireDateLabel.Name = "hireDateLabel";
+            this.hireDateLabel.Size = new System.Drawing.Size(67, 17);
+            this.hireDateLabel.TabIndex = 31;
+            this.hireDateLabel.Text = "End Date";
             // 
             // lastNameLabel
             // 
@@ -70,14 +70,14 @@
             this.positionLabel.TabIndex = 27;
             this.positionLabel.Text = "Position";
             // 
-            // personalNumberLabel
+            // egnLabel
             // 
-            this.personalNumberLabel.AutoSize = true;
-            this.personalNumberLabel.Location = new System.Drawing.Point(450, 84);
-            this.personalNumberLabel.Name = "personalNumberLabel";
-            this.personalNumberLabel.Size = new System.Drawing.Size(118, 17);
-            this.personalNumberLabel.TabIndex = 26;
-            this.personalNumberLabel.Text = "Personal Number";
+            this.egnLabel.AutoSize = true;
+            this.egnLabel.Location = new System.Drawing.Point(450, 84);
+            this.egnLabel.Name = "egnLabel";
+            this.egnLabel.Size = new System.Drawing.Size(38, 17);
+            this.egnLabel.TabIndex = 26;
+            this.egnLabel.Text = "EGN";
             // 
             // positionTextBox
             // 
@@ -87,12 +87,12 @@
             this.positionTextBox.Size = new System.Drawing.Size(213, 22);
             this.positionTextBox.TabIndex = 25;
             // 
-            // employeePersonalNumberTextBox
+            // egnTextBox
             // 
-            this.employeePersonalNumberTextBox.Location = new System.Drawing.Point(453, 109);
-            this.employeePersonalNumberTextBox.Name = "employeePersonalNumberTextBox";
-            this.employeePersonalNumberTextBox.Size = new System.Drawing.Size(213, 22);
-            this.employeePersonalNumberTextBox.TabIndex = 24;
+            this.egnTextBox.Location = new System.Drawing.Point(453, 109);
+            this.egnTextBox.Name = "egnTextBox";
+            this.egnTextBox.Size = new System.Drawing.Size(213, 22);
+            this.egnTextBox.TabIndex = 24;
             // 
             // registerEmployeeBtn
             // 
@@ -100,41 +100,41 @@
             this.registerEmployeeBtn.Name = "registerEmployeeBtn";
             this.registerEmployeeBtn.Size = new System.Drawing.Size(159, 33);
             this.registerEmployeeBtn.TabIndex = 23;
-            this.registerEmployeeBtn.Text = "Register";
+            this.registerEmployeeBtn.Text = "Register Employee";
             this.registerEmployeeBtn.UseVisualStyleBackColor = true;
             // 
-            // secondNameLabel
+            // surnameLabel
             // 
-            this.secondNameLabel.AutoSize = true;
-            this.secondNameLabel.Location = new System.Drawing.Point(135, 159);
-            this.secondNameLabel.Name = "secondNameLabel";
-            this.secondNameLabel.Size = new System.Drawing.Size(95, 17);
-            this.secondNameLabel.TabIndex = 22;
-            this.secondNameLabel.Text = "Second name";
+            this.surnameLabel.AutoSize = true;
+            this.surnameLabel.Location = new System.Drawing.Point(135, 159);
+            this.surnameLabel.Name = "surnameLabel";
+            this.surnameLabel.Size = new System.Drawing.Size(65, 17);
+            this.surnameLabel.TabIndex = 22;
+            this.surnameLabel.Text = "Surname";
             // 
-            // employeeNameLabel
+            // nameLabel
             // 
-            this.employeeNameLabel.AutoSize = true;
-            this.employeeNameLabel.Location = new System.Drawing.Point(135, 84);
-            this.employeeNameLabel.Name = "employeeNameLabel";
-            this.employeeNameLabel.Size = new System.Drawing.Size(45, 17);
-            this.employeeNameLabel.TabIndex = 21;
-            this.employeeNameLabel.Text = "Name";
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(135, 84);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(45, 17);
+            this.nameLabel.TabIndex = 21;
+            this.nameLabel.Text = "Name";
             // 
-            // secondNameTextBox
+            // surnameTextBox
             // 
-            this.secondNameTextBox.Location = new System.Drawing.Point(138, 185);
-            this.secondNameTextBox.Name = "secondNameTextBox";
-            this.secondNameTextBox.PasswordChar = '*';
-            this.secondNameTextBox.Size = new System.Drawing.Size(213, 22);
-            this.secondNameTextBox.TabIndex = 20;
+            this.surnameTextBox.Location = new System.Drawing.Point(138, 185);
+            this.surnameTextBox.Name = "surnameTextBox";
+            this.surnameTextBox.PasswordChar = '*';
+            this.surnameTextBox.Size = new System.Drawing.Size(213, 22);
+            this.surnameTextBox.TabIndex = 20;
             // 
-            // employeeNameTextBox
+            // nameTextBox
             // 
-            this.employeeNameTextBox.Location = new System.Drawing.Point(138, 109);
-            this.employeeNameTextBox.Name = "employeeNameTextBox";
-            this.employeeNameTextBox.Size = new System.Drawing.Size(213, 22);
-            this.employeeNameTextBox.TabIndex = 19;
+            this.nameTextBox.Location = new System.Drawing.Point(138, 109);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(213, 22);
+            this.nameTextBox.TabIndex = 19;
             // 
             // lastNameTextBox
             // 
@@ -144,32 +144,32 @@
             this.lastNameTextBox.Size = new System.Drawing.Size(213, 22);
             this.lastNameTextBox.TabIndex = 32;
             // 
-            // endDateTextBox
+            // hireDateTextBox
             // 
-            this.endDateTextBox.Location = new System.Drawing.Point(453, 262);
-            this.endDateTextBox.Name = "endDateTextBox";
-            this.endDateTextBox.PasswordChar = '*';
-            this.endDateTextBox.Size = new System.Drawing.Size(213, 22);
-            this.endDateTextBox.TabIndex = 33;
+            this.hireDateTextBox.Location = new System.Drawing.Point(453, 262);
+            this.hireDateTextBox.Name = "hireDateTextBox";
+            this.hireDateTextBox.PasswordChar = '*';
+            this.hireDateTextBox.Size = new System.Drawing.Size(213, 22);
+            this.hireDateTextBox.TabIndex = 33;
             // 
             // EmployeeRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.endDateTextBox);
+            this.Controls.Add(this.hireDateTextBox);
             this.Controls.Add(this.lastNameTextBox);
-            this.Controls.Add(this.endDateLabel);
+            this.Controls.Add(this.hireDateLabel);
             this.Controls.Add(this.lastNameLabel);
             this.Controls.Add(this.positionLabel);
-            this.Controls.Add(this.personalNumberLabel);
+            this.Controls.Add(this.egnLabel);
             this.Controls.Add(this.positionTextBox);
-            this.Controls.Add(this.employeePersonalNumberTextBox);
+            this.Controls.Add(this.egnTextBox);
             this.Controls.Add(this.registerEmployeeBtn);
-            this.Controls.Add(this.secondNameLabel);
-            this.Controls.Add(this.employeeNameLabel);
-            this.Controls.Add(this.secondNameTextBox);
-            this.Controls.Add(this.employeeNameTextBox);
+            this.Controls.Add(this.surnameLabel);
+            this.Controls.Add(this.nameLabel);
+            this.Controls.Add(this.surnameTextBox);
+            this.Controls.Add(this.nameTextBox);
             this.Name = "EmployeeRegisterForm";
             this.Text = "EmployeeRegisterForm";
             this.ResumeLayout(false);
@@ -179,18 +179,18 @@
 
         #endregion
 
-        private System.Windows.Forms.Label endDateLabel;
+        private System.Windows.Forms.Label hireDateLabel;
         private System.Windows.Forms.Label lastNameLabel;
         private System.Windows.Forms.Label positionLabel;
-        private System.Windows.Forms.Label personalNumberLabel;
+        private System.Windows.Forms.Label egnLabel;
         private System.Windows.Forms.TextBox positionTextBox;
-        private System.Windows.Forms.TextBox employeePersonalNumberTextBox;
+        private System.Windows.Forms.TextBox egnTextBox;
         private System.Windows.Forms.Button registerEmployeeBtn;
-        private System.Windows.Forms.Label secondNameLabel;
-        private System.Windows.Forms.Label employeeNameLabel;
-        private System.Windows.Forms.TextBox secondNameTextBox;
-        private System.Windows.Forms.TextBox employeeNameTextBox;
+        private System.Windows.Forms.Label surnameLabel;
+        private System.Windows.Forms.Label nameLabel;
+        private System.Windows.Forms.TextBox surnameTextBox;
+        private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox lastNameTextBox;
-        private System.Windows.Forms.TextBox endDateTextBox;
+        private System.Windows.Forms.TextBox hireDateTextBox;
     }
 }

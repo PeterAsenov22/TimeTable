@@ -34,11 +34,10 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchComboBox = new System.Windows.Forms.ComboBox();
-            this.employeeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.secondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.personalNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.egn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.position = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hireDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -49,11 +48,10 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.employeeId,
             this.name,
-            this.secondName,
+            this.surname,
             this.lastName,
-            this.personalNumber,
+            this.egn,
             this.position,
             this.hireDate});
             this.dataGridView1.Location = new System.Drawing.Point(23, 127);
@@ -109,14 +107,6 @@
             this.searchComboBox.Size = new System.Drawing.Size(156, 24);
             this.searchComboBox.TabIndex = 0;
             // 
-            // employeeId
-            // 
-            this.employeeId.HeaderText = "Employee Id";
-            this.employeeId.MinimumWidth = 6;
-            this.employeeId.Name = "employeeId";
-            this.employeeId.ReadOnly = true;
-            this.employeeId.Width = 125;
-            // 
             // name
             // 
             this.name.HeaderText = "Name";
@@ -125,13 +115,13 @@
             this.name.ReadOnly = true;
             this.name.Width = 125;
             // 
-            // secondName
+            // surname
             // 
-            this.secondName.HeaderText = "Second Name";
-            this.secondName.MinimumWidth = 6;
-            this.secondName.Name = "secondName";
-            this.secondName.ReadOnly = true;
-            this.secondName.Width = 125;
+            this.surname.HeaderText = "Surname";
+            this.surname.MinimumWidth = 6;
+            this.surname.Name = "surname";
+            this.surname.ReadOnly = true;
+            this.surname.Width = 125;
             // 
             // lastName
             // 
@@ -141,13 +131,13 @@
             this.lastName.ReadOnly = true;
             this.lastName.Width = 125;
             // 
-            // personalNumber
+            // egn
             // 
-            this.personalNumber.HeaderText = "Personal Number";
-            this.personalNumber.MinimumWidth = 6;
-            this.personalNumber.Name = "personalNumber";
-            this.personalNumber.ReadOnly = true;
-            this.personalNumber.Width = 125;
+            this.egn.HeaderText = "EGN";
+            this.egn.MinimumWidth = 6;
+            this.egn.Name = "egn";
+            this.egn.ReadOnly = true;
+            this.egn.Width = 125;
             // 
             // position
             // 
@@ -162,6 +152,7 @@
             this.hireDate.HeaderText = "Hire Date";
             this.hireDate.MinimumWidth = 6;
             this.hireDate.Name = "hireDate";
+            this.hireDate.ReadOnly = true;
             this.hireDate.Width = 125;
             // 
             // EmployeeMainForm
@@ -188,11 +179,10 @@
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.ComboBox searchComboBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn secondName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn surname;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn personalNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn egn;
         private System.Windows.Forms.DataGridViewTextBoxColumn position;
         private System.Windows.Forms.DataGridViewTextBoxColumn hireDate;
     }
