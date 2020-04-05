@@ -58,11 +58,13 @@ namespace TimeTable.UI.Forms.Employee
             {
                 if (e.ColumnIndex == 6)
                 {
-                    EmployeeEditForm projectEditForm = new EmployeeEditForm();
-                    projectEditForm.Show();
+                    EmployeeEditForm employeeEditForm = new EmployeeEditForm();
+                    employeeEditForm.Show();
                 }
                 else if (e.ColumnIndex == 7)
                 {
+                    EmployeeInfoForm employeeInfoForm = new EmployeeInfoForm();
+                    employeeInfoForm.Show();
                 }
             }
         }
