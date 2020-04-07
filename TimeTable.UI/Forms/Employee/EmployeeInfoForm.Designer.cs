@@ -30,15 +30,15 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalWorkingHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.workedHoursLabel = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.monthLabel = new System.Windows.Forms.Label();
             this.yearLabel = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.projectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalWorkingHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -58,7 +58,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Name,
+            this.projectName,
             this.totalWorkingHours,
             this.status});
             this.dataGridView1.Location = new System.Drawing.Point(21, 32);
@@ -67,30 +67,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(838, 166);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Name";
-            this.Name.MinimumWidth = 6;
-            this.Name.Name = "Name";
-            this.Name.ReadOnly = true;
-            this.Name.Width = 125;
-            // 
-            // totalWorkingHours
-            // 
-            this.totalWorkingHours.HeaderText = "Total Working Hours";
-            this.totalWorkingHours.MinimumWidth = 6;
-            this.totalWorkingHours.Name = "totalWorkingHours";
-            this.totalWorkingHours.ReadOnly = true;
-            this.totalWorkingHours.Width = 125;
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Status";
-            this.status.MinimumWidth = 6;
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            this.status.Width = 125;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // groupBox2
             // 
@@ -149,6 +126,30 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 0;
             // 
+            // projectName
+            // 
+            this.projectName.HeaderText = "Name";
+            this.projectName.MinimumWidth = 6;
+            this.projectName.Name = "projectName";
+            this.projectName.ReadOnly = true;
+            this.projectName.Width = 125;
+            // 
+            // totalWorkingHours
+            // 
+            this.totalWorkingHours.HeaderText = "Total Working Hours";
+            this.totalWorkingHours.MinimumWidth = 6;
+            this.totalWorkingHours.Name = "totalWorkingHours";
+            this.totalWorkingHours.ReadOnly = true;
+            this.totalWorkingHours.Width = 125;
+            // 
+            // status
+            // 
+            this.status.HeaderText = "Status";
+            this.status.MinimumWidth = 6;
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Width = 125;
+            // 
             // EmployeeInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -156,6 +157,7 @@
             this.ClientSize = new System.Drawing.Size(1134, 542);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Name = "EmployeeInfoForm";
             this.Text = "EmployeeInfoForm";
             this.Load += new System.EventHandler(this.EmployeeInfoForm_Load);
             this.groupBox1.ResumeLayout(false);
@@ -170,14 +172,14 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalWorkingHours;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label workedHoursLabel;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label monthLabel;
         private System.Windows.Forms.Label yearLabel;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn projectName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalWorkingHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
     }
 }

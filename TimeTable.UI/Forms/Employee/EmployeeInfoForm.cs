@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TimeTable.UI.Forms.Task;
 
 namespace TimeTable.UI.Forms.Employee
 {
@@ -47,6 +48,26 @@ namespace TimeTable.UI.Forms.Employee
 
             dataGridView1.Rows.Add(row1);
             dataGridView1.Rows.Add(row2);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                if (e.ColumnIndex == 3)
+                {
+                    TasksForm tasksForm = new TasksForm();
+                    tasksForm.Show();
+                }
+                else if (e.ColumnIndex == 4)
+                {
+                    TaskRegisterForm taskRegisterForm = new TaskRegisterForm();
+                    taskRegisterForm.Show();
+                }
+            }
         }
     }
 }
