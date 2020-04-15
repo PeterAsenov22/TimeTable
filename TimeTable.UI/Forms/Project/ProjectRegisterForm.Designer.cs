@@ -107,7 +107,6 @@
             // 
             this.maxWHTextBox.Location = new System.Drawing.Point(463, 168);
             this.maxWHTextBox.Name = "maxWHTextBox";
-            this.maxWHTextBox.PasswordChar = '*';
             this.maxWHTextBox.Size = new System.Drawing.Size(213, 22);
             this.maxWHTextBox.TabIndex = 12;
             // 
@@ -169,7 +168,7 @@
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.projectIdTextBox);
             this.Name = "ProjectRegisterForm";
-            this.Text = "ProjectRegisterForm";
+            this.Text = "Register Project";
             this.ResumeLayout(false);
             this.PerformLayout();
 
