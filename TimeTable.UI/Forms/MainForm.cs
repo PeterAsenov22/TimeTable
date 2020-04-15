@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TimeTable.UI.Forms.Employee;
-using TimeTable.UI.Forms.Project;
-
-namespace TimeTable.UI
+﻿namespace TimeTable.UI
 {
+    using System;
+    using System.Linq;
+    using System.Windows.Forms;
+    using TimeTable.UI.Forms.Employee;
+    using TimeTable.UI.Forms.Project;
     public partial class MainForm : Form
     {
+        private TimeTableContext db = new TimeTableContext();
         private ProjectRegisterForm projectRegisterForm;
         public MainForm()
         {
@@ -40,16 +34,11 @@ namespace TimeTable.UI
             moreButtonColumn.UseColumnTextForButtonValue = true;
             dataGridView1.Columns.Add(moreButtonColumn);
 
-            string[] row = {
-                "123456",
-                "Demo Project",
-                "Very cool project about ...",
-                "26.02.2019",
-                "23.05.2020",
-                "120"
-            };
-
-            dataGridView1.Rows.Add(row);
+            var projects = db.Projects.ToList();
+            foreach (var project in projects)
+            {
+                dataGridView1.Rows.Add(project.ToDataView());
+            }
         }
 
         private void registerProjectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,7 +50,22 @@ namespace TimeTable.UI
 
         private void ProjectRegisterForm_RegisterEventHandler(object sender, ProjectRegisterForm.RegisterEventArgs args)
         {
-            dataGridView1.Rows.Add(args.Data);
+            try
+            {
+                db.Projects.Add(args.Project);
+                db.SaveChanges();
+                dataGridView1.Rows.Add(args.Project.ToDataView());
+                MessageBox.Show(
+                    $"Project \"{args.Project.ProjectName}\" was successfully registered!",
+                    "Successful Project Registration",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred while recording the data! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }       
         }
 
         private void ProjectEditForm_EditEventHandler(object sender, ProjectEditForm.EditEventArgs args)

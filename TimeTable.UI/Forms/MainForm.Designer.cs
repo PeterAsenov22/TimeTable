@@ -75,14 +75,14 @@
             // registerEmployeeToolStripMenuItem
             // 
             this.registerEmployeeToolStripMenuItem.Name = "registerEmployeeToolStripMenuItem";
-            this.registerEmployeeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.registerEmployeeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.registerEmployeeToolStripMenuItem.Text = "Register Employee";
             this.registerEmployeeToolStripMenuItem.Click += new System.EventHandler(this.registerEmployeeToolStripMenuItem_Click);
             // 
             // searchEmployeesToolStripMenuItem
             // 
             this.searchEmployeesToolStripMenuItem.Name = "searchEmployeesToolStripMenuItem";
-            this.searchEmployeesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.searchEmployeesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.searchEmployeesToolStripMenuItem.Text = "Search Employees";
             this.searchEmployeesToolStripMenuItem.Click += new System.EventHandler(this.searchEmployeesToolStripMenuItem_Click);
             // 
@@ -223,7 +223,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Time Table Application";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
