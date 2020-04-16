@@ -6,15 +6,19 @@
     using System.Windows.Forms;
     using TimeTable.UI.Forms.Employee;
     using TimeTable.UI.Forms.Project;
+    using TimeTable.UI.Models;
+
     public partial class MainForm : Form
     {
         private TimeTableContext db = new TimeTableContext();
         private ProjectRegisterForm projectRegisterForm;
         private HashSet<decimal> projectsIds;
+        private HashSet<string> projectsNames;
         public MainForm()
         {
             InitializeComponent();
             this.projectsIds = new HashSet<decimal>();
+            this.projectsNames = new HashSet<string>();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -33,7 +37,7 @@
             DataGridViewButtonColumn moreButtonColumn = new DataGridViewButtonColumn();
             moreButtonColumn.Name = "more";
             moreButtonColumn.HeaderText = "";
-            moreButtonColumn.Text = "More";
+            moreButtonColumn.Text = "More Info";
             moreButtonColumn.UseColumnTextForButtonValue = true;
             dataGridView1.Columns.Add(moreButtonColumn);
 
@@ -42,12 +46,13 @@
             {
                 dataGridView1.Rows.Add(project.ToDataView());
                 this.projectsIds.Add(project.ProjectId);
+                this.projectsNames.Add(project.ProjectName);
             }
         }
 
         private void registerProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            projectRegisterForm = new ProjectRegisterForm(this.projectsIds);
+            projectRegisterForm = new ProjectRegisterForm(this.projectsIds, this.projectsNames);
             projectRegisterForm.RegisterEventHandler += ProjectRegisterForm_RegisterEventHandler;
             projectRegisterForm.Show();
         }
@@ -59,6 +64,8 @@
                 db.Projects.Add(args.Project);
                 db.SaveChanges();
                 dataGridView1.Rows.Add(args.Project.ToDataView());
+                this.projectsIds.Add(args.Project.ProjectId);
+                this.projectsNames.Add(args.Project.ProjectName);
                 MessageBox.Show(
                     $"Project \"{args.Project.ProjectName}\" was successfully registered!",
                     "Successful Project Registration",
@@ -74,9 +81,24 @@
 
         private void ProjectEditForm_EditEventHandler(object sender, ProjectEditForm.EditEventArgs args)
         {
-            dataGridView1.Rows.Remove(dataGridView1.Rows[args.RowIndex]);
-            dataGridView1.Rows.Insert(args.RowIndex, args.Data);
-            MessageBox.Show($"Project {args.Data[0]} was successfully edited!", "Successful Project Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                db.SaveChanges();
+                dataGridView1.Rows.Remove(dataGridView1.Rows[args.RowIndex]);
+                dataGridView1.Rows.Insert(args.RowIndex, args.Project.ToDataView());
+                this.projectsIds.Add(args.Project.ProjectId);
+                this.projectsNames.Add(args.Project.ProjectName);
+                MessageBox.Show(
+                    $"Project {args.Project.ProjectName} was successfully edited!",
+                    "Successful Project Update",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred while recording the changes! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -88,9 +110,14 @@
             {
                 if (e.ColumnIndex == 6)
                 {
-                    ProjectEditForm projectEditForm = new ProjectEditForm(e.RowIndex, dataGridView1[0, e.RowIndex].Value.ToString());
-                    projectEditForm.EditEventHandler += ProjectEditForm_EditEventHandler;
-                    projectEditForm.Show();
+                    decimal projectId = decimal.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
+                    Project project = db.Projects.Find(projectId);
+                    if (project != null)
+                    {
+                        ProjectEditForm projectEditForm = new ProjectEditForm(e.RowIndex, project, this.projectsIds, this.projectsNames);
+                        projectEditForm.EditEventHandler += ProjectEditForm_EditEventHandler;
+                        projectEditForm.Show();
+                    }
                 }
                 else if (e.ColumnIndex == 7)
                 {

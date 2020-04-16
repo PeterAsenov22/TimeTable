@@ -41,7 +41,7 @@
             this.projectIdLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.projectIdTextBox = new System.Windows.Forms.TextBox();
-            this.cancelBtn = new System.Windows.Forms.Button();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // endDateLabel
@@ -98,7 +98,6 @@
             // 
             this.maxWHTextBox.Location = new System.Drawing.Point(453, 185);
             this.maxWHTextBox.Name = "maxWHTextBox";
-            this.maxWHTextBox.PasswordChar = '*';
             this.maxWHTextBox.Size = new System.Drawing.Size(213, 22);
             this.maxWHTextBox.TabIndex = 25;
             // 
@@ -111,11 +110,11 @@
             // 
             // editProjectBtn
             // 
-            this.editProjectBtn.Location = new System.Drawing.Point(267, 338);
+            this.editProjectBtn.Location = new System.Drawing.Point(324, 335);
             this.editProjectBtn.Name = "editProjectBtn";
-            this.editProjectBtn.Size = new System.Drawing.Size(114, 33);
+            this.editProjectBtn.Size = new System.Drawing.Size(159, 33);
             this.editProjectBtn.TabIndex = 23;
-            this.editProjectBtn.Text = "Edit";
+            this.editProjectBtn.Text = "Edit Project";
             this.editProjectBtn.UseVisualStyleBackColor = true;
             this.editProjectBtn.Click += new System.EventHandler(this.editProjectBtn_Click);
             // 
@@ -151,22 +150,21 @@
             this.projectIdTextBox.Size = new System.Drawing.Size(213, 22);
             this.projectIdTextBox.TabIndex = 19;
             // 
-            // cancelBtn
+            // titleLabel
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(415, 338);
-            this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(114, 33);
-            this.cancelBtn.TabIndex = 32;
-            this.cancelBtn.Text = "Cancel";
-            this.cancelBtn.UseVisualStyleBackColor = true;
-            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Location = new System.Drawing.Point(334, 33);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(93, 17);
+            this.titleLabel.TabIndex = 33;
+            this.titleLabel.Text = "Project Name";
             // 
             // ProjectEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cancelBtn);
+            this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.endDateLabel);
             this.Controls.Add(this.startDateLabel);
             this.Controls.Add(this.endDateTimePicker);
@@ -181,7 +179,7 @@
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.projectIdTextBox);
             this.Name = "ProjectEditForm";
-            this.Text = "ProjectEditForm";
+            this.Text = "Edit Project";
             this.Load += new System.EventHandler(this.ProjectEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -203,6 +201,6 @@
         private System.Windows.Forms.Label projectIdLabel;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox projectIdTextBox;
-        private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.Label titleLabel;
     }
 }

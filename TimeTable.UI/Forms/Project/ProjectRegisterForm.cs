@@ -6,11 +6,13 @@
     using System.Windows.Forms;
     public partial class ProjectRegisterForm : Form
     {
-        private HashSet<decimal> currentProjectsIds;
-        public ProjectRegisterForm(HashSet<decimal> projectsIds)
+        private HashSet<decimal> projectsIds;
+        private HashSet<string> projectsNames;
+        public ProjectRegisterForm(HashSet<decimal> projectsIds, HashSet<string> projectsNames)
         {
             InitializeComponent();
-            this.currentProjectsIds = projectsIds;
+            this.projectsIds = projectsIds;
+            this.projectsNames = projectsNames;
         }
 
         public delegate void RegisterDelegate(object sender, RegisterEventArgs args);
@@ -49,7 +51,7 @@
                 };
 
                 RegisterEventHandler?.Invoke(this, args);
-                ClearData();
+                this.Close();
             }
         }
 
@@ -60,7 +62,7 @@
                 MessageBox.Show("Please, fill in a whole number for Project Id!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            else if(this.currentProjectsIds.Contains(id))
+            else if(this.projectsIds.Contains(id))
             {
                 MessageBox.Show("There is already an existing Project with the provided Id!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -85,6 +87,11 @@
                     MessageBoxIcon.Error
                 );
 
+                return false;
+            }
+            else if(this.projectsNames.Contains(name))
+            {
+                MessageBox.Show("There is already an existing Project with the provided name!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -149,16 +156,6 @@
             const int MaxAnsiCode = 255;
 
             return input.Any(c => c > MaxAnsiCode);
-        }
-
-        private void ClearData()
-        {
-            projectIdTextBox.Text = string.Empty;
-            nameTextBox.Text = string.Empty;
-            descriptionTextBox.Text = string.Empty;
-            maxWHTextBox.Text = string.Empty;
-            startDateTimePicker.Value = DateTime.Today;
-            endDateTimePicker.Value = DateTime.Today;
         }
     }
 }
