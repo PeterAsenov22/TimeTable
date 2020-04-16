@@ -89,7 +89,7 @@
 
         private bool IsValidName(string name)
         {
-            if (name.Length == 0 || name.Length > 50)
+            if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name) || name.Length > 50)
             {
                 MessageBox.Show("Please, fill in a name for the Project with no more than 50 characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

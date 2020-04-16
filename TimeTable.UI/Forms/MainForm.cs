@@ -12,6 +12,7 @@
     {
         private TimeTableContext db = new TimeTableContext();
         private ProjectRegisterForm projectRegisterForm;
+        private List<Models.Project> projects;
         private HashSet<decimal> projectsIds;
         private HashSet<string> projectsNames;
         public MainForm()
@@ -37,12 +38,12 @@
             DataGridViewButtonColumn moreButtonColumn = new DataGridViewButtonColumn();
             moreButtonColumn.Name = "more";
             moreButtonColumn.HeaderText = "";
-            moreButtonColumn.Text = "More Info";
+            moreButtonColumn.Text = "More";
             moreButtonColumn.UseColumnTextForButtonValue = true;
             dataGridView1.Columns.Add(moreButtonColumn);
 
-            var projects = db.Projects.ToList();
-            foreach (var project in projects)
+            this.projects = db.Projects.ToList();
+            foreach (var project in this.projects)
             {
                 dataGridView1.Rows.Add(project.ToDataView());
                 this.projectsIds.Add(project.ProjectId);
@@ -64,8 +65,7 @@
                 db.Projects.Add(args.Project);
                 db.SaveChanges();
                 dataGridView1.Rows.Add(args.Project.ToDataView());
-                this.projectsIds.Add(args.Project.ProjectId);
-                this.projectsNames.Add(args.Project.ProjectName);
+                UpdateSets();
                 MessageBox.Show(
                     $"Project \"{args.Project.ProjectName}\" was successfully registered!",
                     "Successful Project Registration",
@@ -86,8 +86,7 @@
                 db.SaveChanges();
                 dataGridView1.Rows.Remove(dataGridView1.Rows[args.RowIndex]);
                 dataGridView1.Rows.Insert(args.RowIndex, args.Project.ToDataView());
-                this.projectsIds.Add(args.Project.ProjectId);
-                this.projectsNames.Add(args.Project.ProjectName);
+                UpdateSets();
                 MessageBox.Show(
                     $"Project {args.Project.ProjectName} was successfully edited!",
                     "Successful Project Update",
@@ -137,6 +136,84 @@
         {
             EmployeeMainForm employeeMainForm = new EmployeeMainForm();
             employeeMainForm.Show();
+        }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            List<Project> filteredProjects = new List<Models.Project>();
+            string searchBy = searchComboBox.Text;
+            string searchTerm = searchTextBox.Text;
+            bool error = false;
+
+            if (string.IsNullOrEmpty(searchTerm) || string.IsNullOrWhiteSpace(searchTerm))
+            {
+                MessageBox.Show("Please, enter a search term!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                switch (searchBy)
+                {
+                    case "Name":
+                        filteredProjects = this.projects.Where(p => p.ProjectName.Contains(searchTerm)).ToList();
+                        break;
+                    case "Description":
+                        filteredProjects = this.projects.Where(p => p.ProjectDescription.Contains(searchTerm)).ToList();
+                        break;
+                    case "Status":
+                        if (searchTerm != "In-Progress" && searchTerm != "Finished")
+                        {
+                            MessageBox.Show("Please, enter \"In-Progress\" OR \"Finished\" when searching by Status!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            error = true;
+                            break;
+                        }
+
+                        searchTerm = searchTerm == "In-Progress"
+                            ? "O"
+                            : "C";
+                        filteredProjects = this.projects.Where(p => p.ProjectStatus == searchTerm).ToList();
+                        break;
+                    case "Start Date":
+                        filteredProjects = this.projects.Where(p => p.ProjectBegin.ToString("dd/MM/yyyy").Contains(searchTerm)).ToList();
+                        break;
+                    case "End Date":
+                        filteredProjects = this.projects.Where(p => p.ProjectEnd.ToString("dd/MM/yyyy").Contains(searchTerm)).ToList();
+                        break;
+                    default:
+                        break;
+                }
+
+                if (!error)
+                {
+                    dataGridView1.Rows.Clear();
+                    foreach (var project in filteredProjects)
+                    {
+                        dataGridView1.Rows.Add(project.ToDataView());
+                    }
+                }
+            }
+        }
+
+        private void clearSearchBtn_Click(object sender, EventArgs e)
+        {
+            searchComboBox.SelectedIndex = 0;
+            searchTextBox.Text = string.Empty;
+            dataGridView1.Rows.Clear();
+            foreach (var project in this.projects)
+            {
+                dataGridView1.Rows.Add(project.ToDataView());
+            }
+        }
+
+        private void UpdateSets()
+        {
+            this.projectsIds.Clear();
+            this.projectsNames.Clear();
+
+            foreach (var project in this.projects)
+            {
+                this.projectsIds.Add(project.ProjectId);
+                this.projectsNames.Add(project.ProjectName);
+            }
         }
     }
 }

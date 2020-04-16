@@ -36,7 +36,7 @@
             this.registerProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.searchButton = new System.Windows.Forms.Button();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchComboBox = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -46,6 +46,8 @@
             this.startDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.endDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maxWH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clearSearchBtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -75,14 +77,14 @@
             // registerEmployeeToolStripMenuItem
             // 
             this.registerEmployeeToolStripMenuItem.Name = "registerEmployeeToolStripMenuItem";
-            this.registerEmployeeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.registerEmployeeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.registerEmployeeToolStripMenuItem.Text = "Register Employee";
             this.registerEmployeeToolStripMenuItem.Click += new System.EventHandler(this.registerEmployeeToolStripMenuItem_Click);
             // 
             // searchEmployeesToolStripMenuItem
             // 
             this.searchEmployeesToolStripMenuItem.Name = "searchEmployeesToolStripMenuItem";
-            this.searchEmployeesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.searchEmployeesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.searchEmployeesToolStripMenuItem.Text = "Search Employees";
             this.searchEmployeesToolStripMenuItem.Click += new System.EventHandler(this.searchEmployeesToolStripMenuItem_Click);
             // 
@@ -97,19 +99,21 @@
             // registerProjectToolStripMenuItem
             // 
             this.registerProjectToolStripMenuItem.Name = "registerProjectToolStripMenuItem";
-            this.registerProjectToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.registerProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.registerProjectToolStripMenuItem.Text = "Register Project";
             this.registerProjectToolStripMenuItem.Click += new System.EventHandler(this.registerProjectToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.clearSearchBtn);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.searchButton);
+            this.groupBox1.Controls.Add(this.searchBtn);
             this.groupBox1.Controls.Add(this.searchTextBox);
             this.groupBox1.Controls.Add(this.searchComboBox);
             this.groupBox1.Location = new System.Drawing.Point(46, 45);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(706, 68);
+            this.groupBox1.Size = new System.Drawing.Size(964, 68);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Find Project";
@@ -117,30 +121,32 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(121, 26);
+            this.label1.Location = new System.Drawing.Point(103, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 17);
+            this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Find By:";
+            this.label1.Text = "Search By:";
             // 
-            // searchButton
+            // searchBtn
             // 
-            this.searchButton.Location = new System.Drawing.Point(588, 19);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(85, 30);
-            this.searchButton.TabIndex = 2;
-            this.searchButton.Text = "Search";
-            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchBtn.Location = new System.Drawing.Point(671, 19);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(85, 30);
+            this.searchBtn.TabIndex = 2;
+            this.searchBtn.Text = "Search";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // searchTextBox
             // 
-            this.searchTextBox.Location = new System.Drawing.Point(385, 23);
+            this.searchTextBox.Location = new System.Drawing.Point(479, 23);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(168, 22);
+            this.searchTextBox.Size = new System.Drawing.Size(156, 22);
             this.searchTextBox.TabIndex = 1;
             // 
             // searchComboBox
             // 
+            this.searchComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.searchComboBox.FormattingEnabled = true;
             this.searchComboBox.Location = new System.Drawing.Point(186, 23);
             this.searchComboBox.Name = "searchComboBox";
@@ -161,7 +167,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1343, 300);
+            this.dataGridView1.Size = new System.Drawing.Size(1363, 300);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -213,6 +219,25 @@
             this.maxWH.ReadOnly = true;
             this.maxWH.Width = 125;
             // 
+            // clearSearchBtn
+            // 
+            this.clearSearchBtn.Location = new System.Drawing.Point(822, 19);
+            this.clearSearchBtn.Name = "clearSearchBtn";
+            this.clearSearchBtn.Size = new System.Drawing.Size(120, 30);
+            this.clearSearchBtn.TabIndex = 4;
+            this.clearSearchBtn.Text = "Clear Search";
+            this.clearSearchBtn.UseVisualStyleBackColor = true;
+            this.clearSearchBtn.Click += new System.EventHandler(this.clearSearchBtn_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(379, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Search Term:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -244,7 +269,7 @@
         private System.Windows.Forms.ToolStripMenuItem projectsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registerProjectToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.ComboBox searchComboBox;
         private System.Windows.Forms.Label label1;
@@ -255,5 +280,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn startDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn endDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn maxWH;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button clearSearchBtn;
     }
 }
