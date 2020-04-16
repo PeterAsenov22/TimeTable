@@ -1,13 +1,16 @@
 ﻿namespace TimeTable.UI.Forms.Project
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Forms;
     public partial class ProjectRegisterForm : Form
     {
-        public ProjectRegisterForm()
+        private HashSet<decimal> currentProjectsIds;
+        public ProjectRegisterForm(HashSet<decimal> projectsIds)
         {
             InitializeComponent();
+            this.currentProjectsIds = projectsIds;
         }
 
         public delegate void RegisterDelegate(object sender, RegisterEventArgs args);
@@ -55,6 +58,11 @@
             if (!int.TryParse(projectIdTextBox.Text, out id))
             {
                 MessageBox.Show("Please, fill in a whole number for Project Id!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if(this.currentProjectsIds.Contains(id))
+            {
+                MessageBox.Show("There is already an existing Project with the provided Id!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 

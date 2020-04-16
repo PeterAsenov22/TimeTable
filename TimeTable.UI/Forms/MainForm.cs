@@ -1,6 +1,7 @@
 ﻿namespace TimeTable.UI
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Forms;
     using TimeTable.UI.Forms.Employee;
@@ -9,9 +10,11 @@
     {
         private TimeTableContext db = new TimeTableContext();
         private ProjectRegisterForm projectRegisterForm;
+        private HashSet<decimal> projectsIds;
         public MainForm()
         {
             InitializeComponent();
+            this.projectsIds = new HashSet<decimal>();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -38,12 +41,13 @@
             foreach (var project in projects)
             {
                 dataGridView1.Rows.Add(project.ToDataView());
+                this.projectsIds.Add(project.ProjectId);
             }
         }
 
         private void registerProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            projectRegisterForm = new ProjectRegisterForm();
+            projectRegisterForm = new ProjectRegisterForm(this.projectsIds);
             projectRegisterForm.RegisterEventHandler += ProjectRegisterForm_RegisterEventHandler;
             projectRegisterForm.Show();
         }
