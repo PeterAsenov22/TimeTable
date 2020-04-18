@@ -100,6 +100,24 @@
             }
         }
 
+        private void ProjectInfoForm_ChangeStatusEventHandler(object sender)
+        {
+            try
+            {
+                db.SaveChanges();
+                MessageBox.Show(
+                    $"Project Status was successfully updated!",
+                    "Successful Status Update",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred while recording the changes! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -120,8 +138,14 @@
                 }
                 else if (e.ColumnIndex == 7)
                 {
-                    ProjectInfoForm projectInfoForm = new ProjectInfoForm(dataGridView1[0, e.RowIndex].Value.ToString());
-                    projectInfoForm.Show();
+                    decimal projectId = decimal.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
+                    Project project = db.Projects.Find(projectId);
+                    if (project != null)
+                    {
+                        ProjectInfoForm projectInfoForm = new ProjectInfoForm(project);
+                        projectInfoForm.ChangeStatusEventHandler += ProjectInfoForm_ChangeStatusEventHandler;
+                        projectInfoForm.Show();
+                    }
                 }
             }
         }
