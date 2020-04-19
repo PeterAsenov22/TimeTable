@@ -2,9 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    public partial class Employees
+    public partial class Employee
     {
-        public Employees()
+        public Employee()
         {
             ProjectHours = new HashSet<ProjectHours>();
         }

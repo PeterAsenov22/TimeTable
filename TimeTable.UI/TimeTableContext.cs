@@ -14,7 +14,7 @@
         {
         }
 
-        public virtual DbSet<Employees> Employees { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectHours> ProjectHours { get; set; }
         public virtual DbSet<ProjectMonths> ProjectMonths { get; set; }
@@ -29,7 +29,7 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employees>(entity =>
+            modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => e.EmployeeId);
 
