@@ -153,7 +153,28 @@
         private void registerEmployeeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EmployeeRegisterForm employeeRegisterForm = new EmployeeRegisterForm();
+            employeeRegisterForm.RegisterEventHandler += EmployeeRegisterForm_RegisterEventHandler;
             employeeRegisterForm.Show();
+        }
+
+        private void EmployeeRegisterForm_RegisterEventHandler(object sender, EmployeeRegisterForm.RegisterEventArgs args)
+        {
+            try
+            {
+                args.Employee.EmployeeId = db.Employees.Count() + 1;
+                db.Employees.Add(args.Employee);
+                db.SaveChanges();
+                MessageBox.Show(
+                    $"{args.Employee.EmployeeName} {args.Employee.EmployeeSurname} {args.Employee.EmployeeLastname} was successfully registered!",
+                    "Successful Employee Registration",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred while recording the data! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void searchEmployeesToolStripMenuItem_Click(object sender, EventArgs e)
