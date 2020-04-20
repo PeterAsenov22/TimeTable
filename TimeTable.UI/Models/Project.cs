@@ -26,8 +26,8 @@
             return new string[]
             {
                 ProjectId.ToString(),
-                ProjectName.ToString(),
-                ProjectDescription.ToString(),
+                ProjectName,
+                ProjectDescription,
                 ProjectBegin.ToString("dd/MM/yyyy"),
                 ProjectEnd.ToString("dd/MM/yyyy"),
                 ProjectMaxhours.ToString()

@@ -10,7 +10,7 @@
 
     public partial class MainForm : Form
     {
-        private TimeTableContext db = new TimeTableContext();
+        private TimeTableContext db;
         private ProjectRegisterForm projectRegisterForm;
         private List<Models.Project> projects;
         private HashSet<decimal> projectsIds;
@@ -18,6 +18,7 @@
         public MainForm()
         {
             InitializeComponent();
+            this.db = new TimeTableContext();
             this.projectsIds = new HashSet<decimal>();
             this.projectsNames = new HashSet<string>();
         }
@@ -152,34 +153,13 @@
 
         private void registerEmployeeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EmployeeRegisterForm employeeRegisterForm = new EmployeeRegisterForm();
-            employeeRegisterForm.RegisterEventHandler += EmployeeRegisterForm_RegisterEventHandler;
+            EmployeeRegisterForm employeeRegisterForm = new EmployeeRegisterForm(db);
             employeeRegisterForm.Show();
-        }
-
-        private void EmployeeRegisterForm_RegisterEventHandler(object sender, EmployeeRegisterForm.RegisterEventArgs args)
-        {
-            try
-            {
-                args.Employee.EmployeeId = db.Employees.Count() + 1;
-                db.Employees.Add(args.Employee);
-                db.SaveChanges();
-                MessageBox.Show(
-                    $"{args.Employee.EmployeeName} {args.Employee.EmployeeSurname} {args.Employee.EmployeeLastname} was successfully registered!",
-                    "Successful Employee Registration",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
-            catch
-            {
-                MessageBox.Show("An error occurred while recording the data! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void searchEmployeesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EmployeeMainForm employeeMainForm = new EmployeeMainForm();
+            EmployeeMainForm employeeMainForm = new EmployeeMainForm(db);
             employeeMainForm.Show();
         }
 

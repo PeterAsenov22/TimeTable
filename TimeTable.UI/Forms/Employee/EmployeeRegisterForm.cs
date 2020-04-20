@@ -5,17 +5,11 @@
     using System.Windows.Forms;
     public partial class EmployeeRegisterForm : Form
     {
-        public EmployeeRegisterForm()
+        private TimeTableContext db;
+        public EmployeeRegisterForm(TimeTableContext db)
         {
             InitializeComponent();
-        }
-
-        public delegate void RegisterDelegate(object sender, RegisterEventArgs args);
-        public event RegisterDelegate RegisterEventHandler;
-
-        public class RegisterEventArgs : EventArgs
-        {
-            public Models.Employee Employee { get; set; }
+            this.db = db;
         }
 
         private void registerEmployeeBtn_Click(object sender, EventArgs e)
@@ -33,19 +27,35 @@
                 && IsValidEgn(egn)
                 && IsValidPosition(position))
             {
-                RegisterEventArgs args = new RegisterEventArgs();
-                args.Employee = new Models.Employee()
+                try
                 {
-                    EmployeeName = name,
-                    EmployeeSurname = surname,
-                    EmployeeLastname = lastName,
-                    EmployeeEgn = egn,
-                    EmployeePosition = position,
-                    EmployeeHiredate = hireDate
-                };
+                    var employee = new Models.Employee()
+                    {
+                        EmployeeId = db.Employees.Count() + 1,
+                        EmployeeName = name,
+                        EmployeeSurname = surname,
+                        EmployeeLastname = lastName,
+                        EmployeeEgn = egn,
+                        EmployeePosition = position,
+                        EmployeeHiredate = hireDate
+                    };
 
-                RegisterEventHandler?.Invoke(this, args);
-                this.Close();
+                    db.Employees.Add(employee);
+                    db.SaveChanges();
+
+                    MessageBox.Show(
+                        $"{employee.EmployeeName} {employee.EmployeeSurname} {employee.EmployeeLastname} was successfully registered!",
+                        "Successful Employee Registration",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("An error occurred while recording the data! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private bool IsValidName(string name, string propertyName)
@@ -115,6 +125,17 @@
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
+                );
+
+                return false;
+            }
+            else if (db.Employees.Any(e => e.EmployeeEgn == egn))
+            {
+                MessageBox.Show(
+                  $"An employee with the same EGN has already been registered!",
+                  "Error",
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Error
                 );
 
                 return false;
