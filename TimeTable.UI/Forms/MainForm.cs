@@ -12,7 +12,7 @@
     {
         private TimeTableContext db;
         private ProjectRegisterForm projectRegisterForm;
-        private List<Models.Project> projects;
+        private List<Project> projects;
         private HashSet<decimal> projectsIds;
         private HashSet<string> projectsNames;
         public MainForm()
@@ -165,7 +165,7 @@
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            List<Project> filteredProjects = new List<Models.Project>();
+            List<Project> filteredProjects = new List<Project>();
             string searchBy = searchComboBox.Text;
             string searchTerm = searchTextBox.Text;
             bool error = false;

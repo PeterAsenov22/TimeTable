@@ -18,5 +18,18 @@
         public DateTime? EmployeeHiredate { get; set; }
 
         public virtual ICollection<ProjectHours> ProjectHours { get; set; }
+
+        public string[] ToDataView()
+        {
+            return new string[]
+            {
+                EmployeeName,
+                EmployeeSurname,
+                EmployeeLastname,
+                EmployeeEgn,
+                EmployeePosition,
+                EmployeeHiredate?.ToString("dd/MM/yyyy")
+            };
+        }
     }
 }
