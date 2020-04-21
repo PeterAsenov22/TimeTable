@@ -8,10 +8,12 @@
     {
         private TimeTableContext db;
         private List<Models.Employee> employees;
+        private HashSet<string> employeesEGNs;
         public EmployeeMainForm(TimeTableContext db)
         {
             InitializeComponent();
             this.db = db;
+            this.employeesEGNs = new HashSet<string>();
         }
 
         private void EmployeeMainForm_Load(object sender, EventArgs e)
@@ -38,6 +40,7 @@
             foreach (var employee in this.employees)
             {
                 dataGridView1.Rows.Add(employee.ToDataView());
+                this.employeesEGNs.Add(employee.EmployeeEgn);
             }
         }
 
@@ -50,14 +53,41 @@
             {
                 if (e.ColumnIndex == 6)
                 {
-                    EmployeeEditForm employeeEditForm = new EmployeeEditForm();
-                    employeeEditForm.Show();
+                    string employeeEGN = dataGridView1[3, e.RowIndex].Value.ToString();
+                    Models.Employee employee = db.Employees.First(em => em.EmployeeEgn == employeeEGN);
+                    if (employee != null)
+                    {
+                        EmployeeEditForm employeeEditForm = new EmployeeEditForm(e.RowIndex, employee, this.employeesEGNs);
+                        employeeEditForm.EditEventHandler += EmployeeEditForm_EditEventHandler;
+                        employeeEditForm.Show();
+                    }
                 }
                 else if (e.ColumnIndex == 7)
                 {
                     EmployeeInfoForm employeeInfoForm = new EmployeeInfoForm();
                     employeeInfoForm.Show();
                 }
+            }
+        }
+
+        private void EmployeeEditForm_EditEventHandler(object sender, EmployeeEditForm.EditEventArgs args)
+        {
+            try
+            {
+                db.SaveChanges();
+                dataGridView1.Rows.Remove(dataGridView1.Rows[args.RowIndex]);
+                dataGridView1.Rows.Insert(args.RowIndex, args.Employee.ToDataView());
+                UpdateSets();
+                MessageBox.Show(
+                    $"{args.Employee.EmployeeName} {args.Employee.EmployeeSurname} {args.Employee.EmployeeLastname}'s account was successfully edited!",
+                    "Successful Employee Update",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred while recording the changes! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -114,6 +144,16 @@
             foreach (var employee in this.employees)
             {
                 dataGridView1.Rows.Add(employee.ToDataView());
+            }
+        }
+
+        private void UpdateSets()
+        {
+            this.employeesEGNs.Clear();
+
+            foreach (var employee in this.employees)
+            {
+                this.employeesEGNs.Add(employee.EmployeeEgn);
             }
         }
     }

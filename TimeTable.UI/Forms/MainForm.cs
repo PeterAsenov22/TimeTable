@@ -89,7 +89,7 @@
                 dataGridView1.Rows.Insert(args.RowIndex, args.Project.ToDataView());
                 UpdateSets();
                 MessageBox.Show(
-                    $"Project {args.Project.ProjectName} was successfully edited!",
+                    $"Project \"{args.Project.ProjectName}\" was successfully edited!",
                     "Successful Project Update",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information

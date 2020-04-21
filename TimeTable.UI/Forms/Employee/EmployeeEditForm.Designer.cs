@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.hireDateTextBox = new System.Windows.Forms.TextBox();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.hireDateLabel = new System.Windows.Forms.Label();
             this.lastNameLabel = new System.Windows.Forms.Label();
@@ -41,21 +40,13 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.surnameTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.hireDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
-            // 
-            // hireDateTextBox
-            // 
-            this.hireDateTextBox.Location = new System.Drawing.Point(453, 262);
-            this.hireDateTextBox.Name = "hireDateTextBox";
-            this.hireDateTextBox.PasswordChar = '*';
-            this.hireDateTextBox.Size = new System.Drawing.Size(213, 22);
-            this.hireDateTextBox.TabIndex = 46;
             // 
             // lastNameTextBox
             // 
             this.lastNameTextBox.Location = new System.Drawing.Point(138, 262);
             this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.PasswordChar = '*';
             this.lastNameTextBox.Size = new System.Drawing.Size(213, 22);
             this.lastNameTextBox.TabIndex = 45;
             // 
@@ -99,7 +90,6 @@
             // 
             this.positionTextBox.Location = new System.Drawing.Point(453, 185);
             this.positionTextBox.Name = "positionTextBox";
-            this.positionTextBox.PasswordChar = '*';
             this.positionTextBox.Size = new System.Drawing.Size(213, 22);
             this.positionTextBox.TabIndex = 40;
             // 
@@ -118,6 +108,7 @@
             this.editEmployeeBtn.TabIndex = 38;
             this.editEmployeeBtn.Text = "Edit Employee";
             this.editEmployeeBtn.UseVisualStyleBackColor = true;
+            this.editEmployeeBtn.Click += new System.EventHandler(this.editEmployeeBtn_Click);
             // 
             // surnameLabel
             // 
@@ -141,7 +132,6 @@
             // 
             this.surnameTextBox.Location = new System.Drawing.Point(138, 185);
             this.surnameTextBox.Name = "surnameTextBox";
-            this.surnameTextBox.PasswordChar = '*';
             this.surnameTextBox.Size = new System.Drawing.Size(213, 22);
             this.surnameTextBox.TabIndex = 35;
             // 
@@ -152,12 +142,19 @@
             this.nameTextBox.Size = new System.Drawing.Size(213, 22);
             this.nameTextBox.TabIndex = 34;
             // 
+            // hireDateTimePicker
+            // 
+            this.hireDateTimePicker.Location = new System.Drawing.Point(453, 262);
+            this.hireDateTimePicker.Name = "hireDateTimePicker";
+            this.hireDateTimePicker.Size = new System.Drawing.Size(213, 22);
+            this.hireDateTimePicker.TabIndex = 46;
+            // 
             // EmployeeEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.hireDateTextBox);
+            this.Controls.Add(this.hireDateTimePicker);
             this.Controls.Add(this.lastNameTextBox);
             this.Controls.Add(this.hireDateLabel);
             this.Controls.Add(this.lastNameLabel);
@@ -171,15 +168,14 @@
             this.Controls.Add(this.surnameTextBox);
             this.Controls.Add(this.nameTextBox);
             this.Name = "EmployeeEditForm";
-            this.Text = "EmployeeEditForm";
+            this.Text = "Edit Employee";
+            this.Load += new System.EventHandler(this.EmployeeEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox hireDateTextBox;
         private System.Windows.Forms.TextBox lastNameTextBox;
         private System.Windows.Forms.Label hireDateLabel;
         private System.Windows.Forms.Label lastNameLabel;
@@ -192,5 +188,6 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox surnameTextBox;
         private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.DateTimePicker hireDateTimePicker;
     }
 }
