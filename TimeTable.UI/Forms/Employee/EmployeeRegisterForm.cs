@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Windows.Forms;
+    using Models;
     public partial class EmployeeRegisterForm : Form
     {
         private TimeTableContext db;
@@ -29,7 +30,7 @@
             {
                 try
                 {
-                    var employee = new Models.Employee()
+                    var employee = new Employee()
                     {
                         EmployeeId = db.Employees.Count() + 1,
                         EmployeeName = name,

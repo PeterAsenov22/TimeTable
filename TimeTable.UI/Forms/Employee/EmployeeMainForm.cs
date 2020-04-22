@@ -4,10 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Forms;
+    using Models;
     public partial class EmployeeMainForm : Form
     {
         private TimeTableContext db;
-        private List<Models.Employee> employees;
+        private List<Employee> employees;
         private HashSet<string> employeesEGNs;
         public EmployeeMainForm(TimeTableContext db)
         {
@@ -54,7 +55,7 @@
                 if (e.ColumnIndex == 6)
                 {
                     string employeeEGN = dataGridView1[3, e.RowIndex].Value.ToString();
-                    Models.Employee employee = db.Employees.First(em => em.EmployeeEgn == employeeEGN);
+                    Employee employee = db.Employees.First(em => em.EmployeeEgn == employeeEGN);
                     if (employee != null)
                     {
                         EmployeeEditForm employeeEditForm = new EmployeeEditForm(e.RowIndex, employee, this.employeesEGNs);
@@ -64,7 +65,8 @@
                 }
                 else if (e.ColumnIndex == 7)
                 {
-                    EmployeeInfoForm employeeInfoForm = new EmployeeInfoForm();
+                    string employeeEGN = dataGridView1[3, e.RowIndex].Value.ToString();
+                    EmployeeInfoForm employeeInfoForm = new EmployeeInfoForm(employeeEGN);
                     employeeInfoForm.Show();
                 }
             }
@@ -93,7 +95,7 @@
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            List<Models.Employee> filteredProjects = new List<Models.Employee>();
+            List<Employee> filteredProjects = new List<Employee>();
             string searchBy = searchComboBox.Text;
             string searchTerm = searchTextBox.Text;
 

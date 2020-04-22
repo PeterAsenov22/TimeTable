@@ -189,7 +189,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "EmployeeMainForm";
-            this.Text = "EmployeeSearchForm";
+            this.Text = "Employees";
             this.Load += new System.EventHandler(this.EmployeeMainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);

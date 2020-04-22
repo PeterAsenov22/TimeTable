@@ -4,12 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Forms;
+    using Models;
     public partial class EmployeeEditForm : Form
     {
         private int rowIndex;
-        private Models.Employee employee;
+        private Employee employee;
         private HashSet<string> employeesEGNs;
-        public EmployeeEditForm(int rowIndex, Models.Employee employee, HashSet<string> employeesEGNs)
+        public EmployeeEditForm(int rowIndex, Employee employee, HashSet<string> employeesEGNs)
         {
             InitializeComponent();
             this.rowIndex = rowIndex;
@@ -35,7 +36,7 @@
         public class EditEventArgs : EventArgs
         {
             public int RowIndex { get; set; }
-            public Models.Employee Employee { get; set; }
+            public Employee Employee { get; set; }
         }
 
         private void editEmployeeBtn_Click(object sender, EventArgs e)

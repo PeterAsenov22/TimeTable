@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.taskDateTextBox = new System.Windows.Forms.TextBox();
             this.taskDateLabel = new System.Windows.Forms.Label();
             this.hoursLabel = new System.Windows.Forms.Label();
             this.hoursTextBox = new System.Windows.Forms.TextBox();
@@ -36,16 +35,9 @@
             this.taskLabel = new System.Windows.Forms.Label();
             this.projectLabel = new System.Windows.Forms.Label();
             this.taskTextBox = new System.Windows.Forms.TextBox();
-            this.projectTextBox = new System.Windows.Forms.TextBox();
+            this.projectComboBox = new System.Windows.Forms.ComboBox();
+            this.taskDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
-            // 
-            // taskDateTextBox
-            // 
-            this.taskDateTextBox.Location = new System.Drawing.Point(474, 198);
-            this.taskDateTextBox.Name = "taskDateTextBox";
-            this.taskDateTextBox.PasswordChar = '*';
-            this.taskDateTextBox.Size = new System.Drawing.Size(213, 22);
-            this.taskDateTextBox.TabIndex = 45;
             // 
             // taskDateLabel
             // 
@@ -80,6 +72,7 @@
             this.addTaskBtn.TabIndex = 38;
             this.addTaskBtn.Text = "Add Task";
             this.addTaskBtn.UseVisualStyleBackColor = true;
+            this.addTaskBtn.Click += new System.EventHandler(this.addTaskBtn_Click);
             // 
             // taskLabel
             // 
@@ -103,24 +96,32 @@
             // 
             this.taskTextBox.Location = new System.Drawing.Point(474, 109);
             this.taskTextBox.Name = "taskTextBox";
-            this.taskTextBox.PasswordChar = '*';
             this.taskTextBox.Size = new System.Drawing.Size(213, 22);
             this.taskTextBox.TabIndex = 35;
             // 
-            // projectTextBox
+            // projectComboBox
             // 
-            this.projectTextBox.Enabled = false;
-            this.projectTextBox.Location = new System.Drawing.Point(138, 109);
-            this.projectTextBox.Name = "projectTextBox";
-            this.projectTextBox.Size = new System.Drawing.Size(213, 22);
-            this.projectTextBox.TabIndex = 34;
+            this.projectComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.projectComboBox.FormattingEnabled = true;
+            this.projectComboBox.Location = new System.Drawing.Point(138, 109);
+            this.projectComboBox.Name = "projectComboBox";
+            this.projectComboBox.Size = new System.Drawing.Size(213, 24);
+            this.projectComboBox.TabIndex = 46;
+            // 
+            // taskDateTimePicker
+            // 
+            this.taskDateTimePicker.Location = new System.Drawing.Point(474, 198);
+            this.taskDateTimePicker.Name = "taskDateTimePicker";
+            this.taskDateTimePicker.Size = new System.Drawing.Size(213, 22);
+            this.taskDateTimePicker.TabIndex = 47;
             // 
             // TaskRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.taskDateTextBox);
+            this.Controls.Add(this.taskDateTimePicker);
+            this.Controls.Add(this.projectComboBox);
             this.Controls.Add(this.taskDateLabel);
             this.Controls.Add(this.hoursLabel);
             this.Controls.Add(this.hoursTextBox);
@@ -128,16 +129,15 @@
             this.Controls.Add(this.taskLabel);
             this.Controls.Add(this.projectLabel);
             this.Controls.Add(this.taskTextBox);
-            this.Controls.Add(this.projectTextBox);
             this.Name = "TaskRegisterForm";
-            this.Text = "TaskRegisterForm";
+            this.Text = "Add Task";
+            this.Load += new System.EventHandler(this.TaskRegisterForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox taskDateTextBox;
         private System.Windows.Forms.Label taskDateLabel;
         private System.Windows.Forms.Label hoursLabel;
         private System.Windows.Forms.TextBox hoursTextBox;
@@ -145,6 +145,7 @@
         private System.Windows.Forms.Label taskLabel;
         private System.Windows.Forms.Label projectLabel;
         private System.Windows.Forms.TextBox taskTextBox;
-        private System.Windows.Forms.TextBox projectTextBox;
+        private System.Windows.Forms.ComboBox projectComboBox;
+        private System.Windows.Forms.DateTimePicker taskDateTimePicker;
     }
 }
