@@ -5,11 +5,12 @@
     using System.Linq;
     using System.Windows.Forms;
     using TimeTable.UI.Models.Enums;
+    using Models;
 
     public partial class ProjectInfoForm : Form
     {
-        private Models.Project project;
-        public ProjectInfoForm(Models.Project project)
+        private Project project;
+        public ProjectInfoForm(Project project)
         {
             InitializeComponent();
             this.project = project;

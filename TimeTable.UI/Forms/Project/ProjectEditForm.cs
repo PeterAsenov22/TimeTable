@@ -4,13 +4,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Forms;
+    using Models;
     public partial class ProjectEditForm : Form
     {
         private int rowIndex;
-        private Models.Project project;
+        private Project project;
         private HashSet<decimal> projectsIds;
         private HashSet<string> projectsNames;
-        public ProjectEditForm(int rowIndex, Models.Project project, HashSet<decimal> projectsIds, HashSet<string> projectsNames)
+        public ProjectEditForm(int rowIndex, Project project, HashSet<decimal> projectsIds, HashSet<string> projectsNames)
         {
             InitializeComponent();
             this.rowIndex = rowIndex;
@@ -37,7 +38,7 @@
         public class EditEventArgs : EventArgs
         {
             public int RowIndex { get; set; }
-            public Models.Project Project { get; set; }
+            public Project Project { get; set; }
         }
 
         private void editProjectBtn_Click(object sender, EventArgs e)

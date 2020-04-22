@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Forms;
+    using Models;
     public partial class ProjectRegisterForm : Form
     {
         private HashSet<decimal> projectsIds;
@@ -20,7 +21,7 @@
 
         public class RegisterEventArgs : EventArgs
         {
-            public Models.Project Project { get; set; }
+            public Project Project { get; set; }
         }
 
         private void registerProjectBtn_Click(object sender, EventArgs e)
@@ -39,7 +40,7 @@
                 && IsValidEndDate(beginDate, endDate))
             {
                 RegisterEventArgs args = new RegisterEventArgs();
-                args.Project = new Models.Project()
+                args.Project = new Project()
                 {
                     ProjectId = id,
                     ProjectName = name,
