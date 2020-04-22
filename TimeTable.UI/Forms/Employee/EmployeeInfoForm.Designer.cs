@@ -35,10 +35,10 @@
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.workedHoursLabel = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.monthComboBox = new System.Windows.Forms.ComboBox();
             this.monthLabel = new System.Windows.Forms.Label();
             this.yearLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.yearComboBox = new System.Windows.Forms.ComboBox();
             this.nameLabel = new System.Windows.Forms.Label();
             this.addTaskBtn = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -101,10 +101,10 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.workedHoursLabel);
-            this.groupBox2.Controls.Add(this.comboBox2);
+            this.groupBox2.Controls.Add(this.monthComboBox);
             this.groupBox2.Controls.Add(this.monthLabel);
             this.groupBox2.Controls.Add(this.yearLabel);
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.yearComboBox);
             this.groupBox2.Location = new System.Drawing.Point(49, 365);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(880, 212);
@@ -121,13 +121,15 @@
             this.workedHoursLabel.TabIndex = 4;
             this.workedHoursLabel.Text = "Hours Worked: -";
             // 
-            // comboBox2
+            // monthComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(180, 89);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2.TabIndex = 3;
+            this.monthComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.monthComboBox.FormattingEnabled = true;
+            this.monthComboBox.Location = new System.Drawing.Point(180, 89);
+            this.monthComboBox.Name = "monthComboBox";
+            this.monthComboBox.Size = new System.Drawing.Size(121, 24);
+            this.monthComboBox.TabIndex = 3;
+            this.monthComboBox.SelectedIndexChanged += new System.EventHandler(this.monthComboBox_SelectedIndexChanged);
             // 
             // monthLabel
             // 
@@ -147,13 +149,15 @@
             this.yearLabel.TabIndex = 1;
             this.yearLabel.Text = "Select Year:";
             // 
-            // comboBox1
+            // yearComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(180, 42);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 0;
+            this.yearComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.yearComboBox.FormattingEnabled = true;
+            this.yearComboBox.Location = new System.Drawing.Point(180, 42);
+            this.yearComboBox.Name = "yearComboBox";
+            this.yearComboBox.Size = new System.Drawing.Size(121, 24);
+            this.yearComboBox.TabIndex = 0;
+            this.yearComboBox.SelectedIndexChanged += new System.EventHandler(this.yearComboBox_SelectedIndexChanged);
             // 
             // nameLabel
             // 
@@ -222,10 +226,10 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label workedHoursLabel;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox monthComboBox;
         private System.Windows.Forms.Label monthLabel;
         private System.Windows.Forms.Label yearLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox yearComboBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectName;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalWorkingHours;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;

@@ -6,6 +6,8 @@
     using System.Windows.Forms;
     using TimeTable.UI.Forms.Task;
     using Models;
+    using System.Collections.Generic;
+    using TimeTable.UI.Models.Enums;
 
     public partial class EmployeeInfoForm : Form
     {
@@ -33,6 +35,16 @@
             dataGridView1.Columns.Add(editButtonColumn);
 
             FillDataGridView();
+
+            int hireYear = this.employee.EmployeeHiredate.GetValueOrDefault().Year;
+            var employeeYears = new List<string>();
+            for (int year = hireYear; year <= DateTime.Now.Year; year++)
+            {
+                employeeYears.Add(year.ToString());
+            }
+
+            yearComboBox.DataSource = employeeYears;
+            yearComboBox.SelectedIndex = 0;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -84,6 +96,7 @@
                 tasksCountLabel.Text = $"Number of Tasks: {this.employeeTasksCount}";
 
                 FillDataGridView();
+                monthComboBox_SelectedIndexChanged(null, null);
 
                 MessageBox.Show(
                     $"Task was successfully added to {args.ProjectName}!",
@@ -114,6 +127,43 @@
                 string employeeTotalWorkingHours = this.employee.ProjectHours.Where(ph => ph.ProjectId == projectId).Sum(ph => ph.ProjectHours1).ToString();
                 dataGridView1.Rows.Add(new string[] { projectName, employeeTotalWorkingHours, projectStatus });
             }
+        }
+
+        private void yearComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedYear = int.Parse(yearComboBox.SelectedItem.ToString());
+            UpdateMonths(selectedYear);
+        }
+
+        private void UpdateMonths(int selectedYear)
+        {
+            DateTime hireDate = this.employee.EmployeeHiredate.GetValueOrDefault();
+            int firstMonth = selectedYear == hireDate.Year
+                ? hireDate.Month
+                : 1;
+
+            int lastMonth = selectedYear == DateTime.Now.Year
+                ? DateTime.Now.Month
+                : 12;
+
+            var currentMonths = new List<string>();
+            for (int month = firstMonth; month <= lastMonth; month++)
+            {
+                currentMonths.Add(Enum.GetName(typeof(Months), month));
+            }
+
+            monthComboBox.DataSource = currentMonths;
+            monthComboBox.SelectedIndex = 0;
+        }
+
+        private void monthComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int year = int.Parse(yearComboBox.SelectedItem.ToString());
+            Months month = (Months)Enum.Parse(typeof(Months), monthComboBox.Text);
+            decimal hoursWorked = this.employee.ProjectHours
+                .Where(ph => ph.ProjectTaskdate.Year == year && ph.ProjectTaskdate.Month == (int)month).Sum(ph => ph.ProjectHours1);
+
+            workedHoursLabel.Text = $"Hours Worked: {hoursWorked}";
         }
     }
 }
