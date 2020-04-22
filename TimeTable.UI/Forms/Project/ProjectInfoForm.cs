@@ -6,14 +6,17 @@
     using System.Windows.Forms;
     using TimeTable.UI.Models.Enums;
     using Models;
+    using Microsoft.EntityFrameworkCore;
 
     public partial class ProjectInfoForm : Form
     {
+        private TimeTableContext db;
         private Project project;
-        public ProjectInfoForm(Project project)
+        public ProjectInfoForm(decimal projectId)
         {
             InitializeComponent();
-            this.project = project;
+            this.db = new TimeTableContext();
+            this.project = this.db.Projects.Include(p => p.ProjectHours).First(p => p.ProjectId == projectId);
         }
 
         private void ProjectInfoForm_Load(object sender, EventArgs e)
@@ -90,8 +93,6 @@
         {
             int selectedYear = int.Parse(yearComboBox.SelectedItem.ToString());
             UpdateMonths(selectedYear);
-            Months selectedMonth = (Months) Enum.Parse(typeof(Months), monthComboBox.SelectedIndex.ToString());
-            SetHoursWorked(selectedYear, int.Parse(selectedMonth.ToString()));
         }
 
         private void UpdateMonths(int selectedYear)
@@ -114,14 +115,12 @@
             monthComboBox.SelectedIndex = 0;
         }
 
-        private void SetHoursWorked(int year, int month)
+        private void monthComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            decimal hoursWorked = 0;
-            var projectMonth = this.project.ProjectMonths.FirstOrDefault(p => p.ProjectYear == year && p.ProjectMonth == month);
-            if (projectMonth != null)
-            {
-                hoursWorked = projectMonth.ProjectHours.Sum(ph => ph.ProjectHours1);
-            }
+            int year = int.Parse(yearComboBox.SelectedItem.ToString());
+            Months month = (Months)Enum.Parse(typeof(Months), monthComboBox.Text);
+            decimal hoursWorked = this.project.ProjectHours
+                .Where(ph => ph.ProjectTaskdate.Month == (int)month && ph.ProjectTaskdate.Year == year).Sum(ph => ph.ProjectHours1);
 
             workedHoursLabel.Text = $"Hours Worked: {hoursWorked}";
         }

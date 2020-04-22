@@ -140,10 +140,9 @@
                 else if (e.ColumnIndex == 7)
                 {
                     decimal projectId = decimal.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
-                    Project project = db.Projects.Find(projectId);
-                    if (project != null)
+                    if (this.db.Projects.Any(p => p.ProjectId == projectId))
                     {
-                        ProjectInfoForm projectInfoForm = new ProjectInfoForm(project);
+                        ProjectInfoForm projectInfoForm = new ProjectInfoForm(projectId);
                         projectInfoForm.ChangeStatusEventHandler += ProjectInfoForm_ChangeStatusEventHandler;
                         projectInfoForm.Show();
                     }

@@ -126,6 +126,7 @@
             this.monthComboBox.Name = "monthComboBox";
             this.monthComboBox.Size = new System.Drawing.Size(121, 24);
             this.monthComboBox.TabIndex = 3;
+            this.monthComboBox.SelectedIndexChanged += new System.EventHandler(this.monthComboBox_SelectedIndexChanged);
             // 
             // monthLabel
             // 
@@ -187,7 +188,7 @@
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.workingEmployeesLabel);
             this.Name = "ProjectInfoForm";
-            this.Text = "ProjectInfoForm";
+            this.Text = "Project Info";
             this.Load += new System.EventHandler(this.ProjectInfoForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
