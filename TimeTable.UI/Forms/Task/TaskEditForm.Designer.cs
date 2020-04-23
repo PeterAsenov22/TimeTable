@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.taskDateTextBox = new System.Windows.Forms.TextBox();
             this.taskDateLabel = new System.Windows.Forms.Label();
             this.hoursLabel = new System.Windows.Forms.Label();
             this.hoursTextBox = new System.Windows.Forms.TextBox();
@@ -37,15 +36,8 @@
             this.projectLabel = new System.Windows.Forms.Label();
             this.taskTextBox = new System.Windows.Forms.TextBox();
             this.projectTextBox = new System.Windows.Forms.TextBox();
+            this.taskDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
-            // 
-            // taskDateTextBox
-            // 
-            this.taskDateTextBox.Location = new System.Drawing.Point(463, 221);
-            this.taskDateTextBox.Name = "taskDateTextBox";
-            this.taskDateTextBox.PasswordChar = '*';
-            this.taskDateTextBox.Size = new System.Drawing.Size(213, 22);
-            this.taskDateTextBox.TabIndex = 54;
             // 
             // taskDateLabel
             // 
@@ -80,6 +72,7 @@
             this.editTaskBtn.TabIndex = 50;
             this.editTaskBtn.Text = "Edit Task";
             this.editTaskBtn.UseVisualStyleBackColor = true;
+            this.editTaskBtn.Click += new System.EventHandler(this.editTaskBtn_Click);
             // 
             // taskLabel
             // 
@@ -103,7 +96,6 @@
             // 
             this.taskTextBox.Location = new System.Drawing.Point(463, 132);
             this.taskTextBox.Name = "taskTextBox";
-            this.taskTextBox.PasswordChar = '*';
             this.taskTextBox.Size = new System.Drawing.Size(213, 22);
             this.taskTextBox.TabIndex = 47;
             // 
@@ -115,12 +107,20 @@
             this.projectTextBox.Size = new System.Drawing.Size(213, 22);
             this.projectTextBox.TabIndex = 46;
             // 
+            // taskDateTimePicker
+            // 
+            this.taskDateTimePicker.Enabled = false;
+            this.taskDateTimePicker.Location = new System.Drawing.Point(463, 219);
+            this.taskDateTimePicker.Name = "taskDateTimePicker";
+            this.taskDateTimePicker.Size = new System.Drawing.Size(213, 22);
+            this.taskDateTimePicker.TabIndex = 54;
+            // 
             // TaskEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.taskDateTextBox);
+            this.Controls.Add(this.taskDateTimePicker);
             this.Controls.Add(this.taskDateLabel);
             this.Controls.Add(this.hoursLabel);
             this.Controls.Add(this.hoursTextBox);
@@ -130,15 +130,14 @@
             this.Controls.Add(this.taskTextBox);
             this.Controls.Add(this.projectTextBox);
             this.Name = "TaskEditForm";
-            this.Text = "TaskEditForm";
+            this.Text = "Edit Task";
+            this.Load += new System.EventHandler(this.TaskEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox taskDateTextBox;
         private System.Windows.Forms.Label taskDateLabel;
         private System.Windows.Forms.Label hoursLabel;
         private System.Windows.Forms.TextBox hoursTextBox;
@@ -147,5 +146,6 @@
         private System.Windows.Forms.Label projectLabel;
         private System.Windows.Forms.TextBox taskTextBox;
         private System.Windows.Forms.TextBox projectTextBox;
+        private System.Windows.Forms.DateTimePicker taskDateTimePicker;
     }
 }

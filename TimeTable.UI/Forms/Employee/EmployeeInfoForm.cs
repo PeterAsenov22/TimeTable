@@ -56,8 +56,26 @@
                 string projectName = dataGridView1[0, e.RowIndex].Value.ToString();
                 decimal projectId = this.db.Projects.Where(p => p.ProjectName == projectName).Select(p => p.ProjectId).FirstOrDefault();
                 TasksForm tasksForm = new TasksForm(this.employee, projectId, projectName);
+                tasksForm.EditEventHandler += TasksForm_EditEventHandler;
                 tasksForm.DeleteEventHandler += TasksForm_DeleteEventHandler;
                 tasksForm.Show();
+            }
+        }
+
+        private bool TasksForm_EditEventHandler(object sender)
+        {
+            try
+            {
+                db.SaveChanges();
+
+                FillDataGridView();
+                monthComboBox_SelectedIndexChanged(null, null);
+                return true;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("An error occurred while recording the changes! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 

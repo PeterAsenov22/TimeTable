@@ -10,14 +10,14 @@
         private Employee employee;
         private decimal projectId;
         private string projectName;
-        private List<ProjectHours> Tasks;
+        private List<ProjectHours> tasks;
         public TasksForm(Employee employee, decimal projectId, string projectName)
         {
             InitializeComponent();
             this.employee = employee;
             this.projectId = projectId;
             this.projectName = projectName;
-            this.Tasks = new List<ProjectHours>();
+            this.tasks = new List<ProjectHours>();
         }
 
         private void TasksForm_Load(object sender, EventArgs e)
@@ -38,24 +38,13 @@
 
             foreach (var task in this.employee.ProjectHours.Where(ph => ph.ProjectId == projectId))
             {
-                this.Tasks.Add(task);
-                dataGridView1.Rows.Add(new string[] {
-                    projectName,
-                    task.ProjectTask,
-                    task.ProjectTaskdate.ToString("dd/MM/yyyy"),
-                    task.ProjectHours1.ToString()
-                });
+                this.tasks.Add(task);
+                dataGridView1.Rows.Add(task.ToDataView(projectName));
             }
         }
 
-        public delegate void EditDelegate(object sender, EditEventArgs args);
+        public delegate bool EditDelegate(object sender);
         public event EditDelegate EditEventHandler;
-
-        public class EditEventArgs : EventArgs
-        {
-            public int RowIndex { get; set; }
-            public Employee Employee { get; set; }
-        }
 
         public delegate void DeleteDelegate(object sender, DeleteEventArgs args);
         public event DeleteDelegate DeleteEventHandler;
@@ -74,7 +63,9 @@
             {
                 if (e.ColumnIndex == 4)
                 {
-                    TaskEditForm taskEditForm = new TaskEditForm();
+                    ProjectHours task = this.tasks[e.RowIndex];
+                    TaskEditForm taskEditForm = new TaskEditForm(e.RowIndex, task, this.projectName);
+                    taskEditForm.EditEventHandler += TaskEditForm_EditEventHandler;
                     taskEditForm.Show();
                 }
                 else if (e.ColumnIndex == 5)
@@ -82,7 +73,7 @@
                     DialogResult result = MessageBox.Show("Are you sure you want to delete this task ?", "Delete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        ProjectHours task = this.Tasks[e.RowIndex];
+                        ProjectHours task = this.tasks[e.RowIndex];
                         var args = new DeleteEventArgs()
                         {
                             Task = task
@@ -99,6 +90,29 @@
                         );
                     }
                 }
+            }
+        }
+
+        private void TaskEditForm_EditEventHandler(object sender, TaskEditForm.EditEventArgs args)
+        {
+            try
+            {
+                if ((bool)EditEventHandler?.Invoke(this))
+                {
+                    dataGridView1.Rows.Remove(dataGridView1.Rows[args.RowIndex]);
+                    dataGridView1.Rows.Insert(args.RowIndex, args.Task.ToDataView(this.projectName));
+
+                    MessageBox.Show(
+                        $"Task was successfully edited!",
+                        "Successful Task Update",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred while recording the changes! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

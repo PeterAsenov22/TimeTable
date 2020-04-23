@@ -13,5 +13,16 @@
         public virtual Employee Employee { get; set; }
         public virtual Project Project { get; set; }
         public virtual ProjectMonths ProjectMonth { get; set; }
+
+        public string[] ToDataView(string projectName)
+        {
+            return new string[]
+            {
+                projectName,
+                ProjectTask,
+                ProjectTaskdate.ToString("dd/MM/yyyy"),
+                ProjectHours1.ToString()
+            };
+        }
     }
 }

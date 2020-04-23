@@ -92,7 +92,7 @@
             this.ClientSize = new System.Drawing.Size(1017, 450);
             this.Controls.Add(this.dataGridView1);
             this.Name = "TasksForm";
-            this.Text = "TasksForm";
+            this.Text = "Tasks";
             this.Load += new System.EventHandler(this.TasksForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
