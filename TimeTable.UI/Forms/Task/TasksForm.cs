@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace TimeTable.UI.Forms.Task
+﻿namespace TimeTable.UI.Forms.Task
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Models;
     public partial class TasksForm : Form
     {
-        public TasksForm()
+        private Employee employee;
+        private decimal projectId;
+        private string projectName;
+        private List<ProjectHours> Tasks;
+        public TasksForm(Employee employee, decimal projectId, string projectName)
         {
             InitializeComponent();
+            this.employee = employee;
+            this.projectId = projectId;
+            this.projectName = projectName;
+            this.Tasks = new List<ProjectHours>();
         }
 
         private void TasksForm_Load(object sender, EventArgs e)
@@ -33,14 +36,33 @@ namespace TimeTable.UI.Forms.Task
             deleteButtonColumn.UseColumnTextForButtonValue = true;
             dataGridView1.Columns.Add(deleteButtonColumn);
 
-            string[] row = {
-                "Project 1",
-                "Add new form",
-                "26.02.2019",
-                "2"
-            };
+            foreach (var task in this.employee.ProjectHours.Where(ph => ph.ProjectId == projectId))
+            {
+                this.Tasks.Add(task);
+                dataGridView1.Rows.Add(new string[] {
+                    projectName,
+                    task.ProjectTask,
+                    task.ProjectTaskdate.ToString("dd/MM/yyyy"),
+                    task.ProjectHours1.ToString()
+                });
+            }
+        }
 
-            dataGridView1.Rows.Add(row);
+        public delegate void EditDelegate(object sender, EditEventArgs args);
+        public event EditDelegate EditEventHandler;
+
+        public class EditEventArgs : EventArgs
+        {
+            public int RowIndex { get; set; }
+            public Employee Employee { get; set; }
+        }
+
+        public delegate void DeleteDelegate(object sender, DeleteEventArgs args);
+        public event DeleteDelegate DeleteEventHandler;
+
+        public class DeleteEventArgs : EventArgs
+        {
+            public ProjectHours Task { get; set; }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -54,6 +76,28 @@ namespace TimeTable.UI.Forms.Task
                 {
                     TaskEditForm taskEditForm = new TaskEditForm();
                     taskEditForm.Show();
+                }
+                else if (e.ColumnIndex == 5)
+                {
+                    DialogResult result = MessageBox.Show("Are you sure you want to delete this task ?", "Delete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        ProjectHours task = this.Tasks[e.RowIndex];
+                        var args = new DeleteEventArgs()
+                        {
+                            Task = task
+                        };
+
+                        DeleteEventHandler?.Invoke(this, args);
+                        dataGridView1.Rows.RemoveAt(e.RowIndex);
+
+                        MessageBox.Show(
+                            $"Task was successfully deleted from {this.projectName}!",
+                            "Successful Task Deletion",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+                    }
                 }
             }
         }

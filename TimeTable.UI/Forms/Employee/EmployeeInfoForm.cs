@@ -53,8 +53,30 @@
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0 && e.ColumnIndex == 3)
             {
-                TasksForm tasksForm = new TasksForm();
+                string projectName = dataGridView1[0, e.RowIndex].Value.ToString();
+                decimal projectId = this.db.Projects.Where(p => p.ProjectName == projectName).Select(p => p.ProjectId).FirstOrDefault();
+                TasksForm tasksForm = new TasksForm(this.employee, projectId, projectName);
+                tasksForm.DeleteEventHandler += TasksForm_DeleteEventHandler;
                 tasksForm.Show();
+            }
+        }
+
+        private void TasksForm_DeleteEventHandler(object sender, TasksForm.DeleteEventArgs args)
+        {
+            try
+            {
+                this.db.ProjectHours.Remove(args.Task);
+                db.SaveChanges();
+
+                this.employeeTasksCount--;
+                tasksCountLabel.Text = $"Number of Tasks: {this.employeeTasksCount}";
+
+                FillDataGridView();
+                monthComboBox_SelectedIndexChanged(null, null);
+            }
+            catch
+            {
+                MessageBox.Show("An error occurred while recording the changes! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
