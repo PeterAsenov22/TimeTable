@@ -125,6 +125,12 @@
 
         private bool IsValidDate(DateTime taskDate, Project project)
         {
+            if (taskDate.CompareTo(this.employee.EmployeeHiredate) < 0)
+            {
+                MessageBox.Show("The Task Date is before the hiring of the employee!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             if (taskDate.CompareTo(project.ProjectBegin) < 0)
             {
                 MessageBox.Show("The Task Date is before the begining of the project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
