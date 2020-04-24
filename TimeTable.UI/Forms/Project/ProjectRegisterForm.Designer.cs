@@ -90,9 +90,9 @@
             this.maxWorkingHoursLabel.AutoSize = true;
             this.maxWorkingHoursLabel.Location = new System.Drawing.Point(460, 142);
             this.maxWorkingHoursLabel.Name = "maxWorkingHoursLabel";
-            this.maxWorkingHoursLabel.Size = new System.Drawing.Size(131, 17);
+            this.maxWorkingHoursLabel.Size = new System.Drawing.Size(222, 17);
             this.maxWorkingHoursLabel.TabIndex = 14;
-            this.maxWorkingHoursLabel.Text = "Max Working Hours";
+            this.maxWorkingHoursLabel.Text = "Max Working Hours per Employee";
             // 
             // descriptionLabel
             // 

@@ -61,7 +61,7 @@
             this.projectsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1437, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1437, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -77,14 +77,14 @@
             // registerEmployeeToolStripMenuItem
             // 
             this.registerEmployeeToolStripMenuItem.Name = "registerEmployeeToolStripMenuItem";
-            this.registerEmployeeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.registerEmployeeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.registerEmployeeToolStripMenuItem.Text = "Register Employee";
             this.registerEmployeeToolStripMenuItem.Click += new System.EventHandler(this.registerEmployeeToolStripMenuItem_Click);
             // 
             // searchEmployeesToolStripMenuItem
             // 
             this.searchEmployeesToolStripMenuItem.Name = "searchEmployeesToolStripMenuItem";
-            this.searchEmployeesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.searchEmployeesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.searchEmployeesToolStripMenuItem.Text = "All Employees";
             this.searchEmployeesToolStripMenuItem.Click += new System.EventHandler(this.searchEmployeesToolStripMenuItem_Click);
             // 
@@ -186,7 +186,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1363, 300);
+            this.dataGridView1.Size = new System.Drawing.Size(1339, 400);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -232,7 +232,7 @@
             // 
             // maxWH
             // 
-            this.maxWH.HeaderText = "Max Working Hours";
+            this.maxWH.HeaderText = "Max Working Hours per Employee";
             this.maxWH.MinimumWidth = 6;
             this.maxWH.Name = "maxWH";
             this.maxWH.ReadOnly = true;
@@ -274,13 +274,13 @@
         private System.Windows.Forms.ComboBox searchComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button clearSearchBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn description;
         private System.Windows.Forms.DataGridViewTextBoxColumn startDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn endDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn maxWH;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button clearSearchBtn;
     }
 }
