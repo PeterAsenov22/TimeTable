@@ -64,7 +64,7 @@
                 if (e.ColumnIndex == 4)
                 {
                     ProjectHours task = this.tasks[e.RowIndex];
-                    TaskEditForm taskEditForm = new TaskEditForm(e.RowIndex, task, this.projectName);
+                    TaskEditForm taskEditForm = new TaskEditForm(e.RowIndex, task, this.projectName, this.employee);
                     taskEditForm.EditEventHandler += TaskEditForm_EditEventHandler;
                     taskEditForm.Show();
                 }

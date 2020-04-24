@@ -1,5 +1,6 @@
 ﻿namespace TimeTable.UI.Forms.Task
 {
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -7,11 +8,15 @@
     using TimeTable.UI.Models;
     public partial class TaskRegisterForm : Form
     {
+        private TimeTableContext db;
+        private Employee employee;
         private List<string> projectsNames;
-        public TaskRegisterForm(List<string> projectsNames)
+        public TaskRegisterForm(TimeTableContext db, Employee employee)
         {
             InitializeComponent();
-            this.projectsNames = projectsNames;
+            this.db = db;
+            this.employee = employee;
+            this.projectsNames = this.db.Projects.Select(p => p.ProjectName).ToList();
         }
 
         public delegate void RegisterDelegate(object sender, RegisterEventArgs args);
@@ -36,7 +41,21 @@
             string task = taskTextBox.Text;
             DateTime taskDate = taskDateTimePicker.Value;
 
-            if (IsValidTask(task) && IsValidHours(ref taskHours))
+            Project project = this.db.Projects.Include(p => p.ProjectMonths).First(p => p.ProjectName == projectName);
+            if (project.ProjectStatus == "C")
+            {
+                MessageBox.Show($"Tasks can not be added to finished project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            decimal employeeMaxWorkingHoursOnProject = project.ProjectMaxhours != null
+            ? (decimal)project.ProjectMaxhours
+            : (decimal)int.MaxValue;
+            decimal employeeCurrentWorkingHoursOnProject = this.employee.ProjectHours.Where(ph => ph.ProjectId == project.ProjectId).Sum(ph => ph.ProjectHours1);
+
+            if (IsValidTask(task)
+                && IsValidHours(ref taskHours, employeeCurrentWorkingHoursOnProject, employeeMaxWorkingHoursOnProject)
+                && IsValidDate(taskDate, project))
             {
                 var projectTask = new ProjectHours()
                 {
@@ -78,12 +97,54 @@
             return true;
         }
 
-        private bool IsValidHours(ref int taskHours)
+        private bool IsValidHours(ref int taskHours, decimal employeeCurrentWorkingHoursOnProject, decimal employeeMaxWorkingHoursOnProject)
         {
             if (!int.TryParse(hoursTextBox.Text, out taskHours))
             {
                 MessageBox.Show("Please, fill in a whole number for Hours Worked!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+
+            if (taskHours > 12 || taskHours < 1)
+            {
+                MessageBox.Show("Hours Worked must be between 1 and 12 hours!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (employeeCurrentWorkingHoursOnProject + taskHours > employeeMaxWorkingHoursOnProject)
+            {
+                MessageBox.Show(
+                    $"You are exceeding the maximum working hours for an employee on this project! The maximum working hours are {employeeMaxWorkingHoursOnProject} " +
+                    $"and the current employee has already worked for {employeeCurrentWorkingHoursOnProject} hours on this project!",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsValidDate(DateTime taskDate, Project project)
+        {
+            if (taskDate.CompareTo(project.ProjectBegin) < 0)
+            {
+                MessageBox.Show("The Task Date is before the begining of the project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (taskDate.CompareTo(project.ProjectEnd) > 0)
+            {
+                MessageBox.Show("The Task Date is after the end of the project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (project.ProjectMonths.Any(pm => pm.ProjectMonth == taskDate.Month && pm.ProjectYear == taskDate.Year))
+            {
+                ProjectMonths projectMonth = project.ProjectMonths.First(pm => pm.ProjectMonth == taskDate.Month && pm.ProjectYear == taskDate.Year);
+                if (projectMonth.ProjectMonthStatus == "C")
+                {
+                    MessageBox.Show("This month is finished for this project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
 
             return true;

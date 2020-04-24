@@ -72,7 +72,7 @@
                 monthComboBox_SelectedIndexChanged(null, null);
                 return true;
             }
-            catch (Exception error)
+            catch
             {
                 MessageBox.Show("An error occurred while recording the changes! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -100,8 +100,7 @@
 
         private void addTaskBtn_Click(object sender, EventArgs e)
         {
-            var projectsNames = this.db.Projects.Select(p => p.ProjectName).ToList();
-            TaskRegisterForm taskRegisterForm = new TaskRegisterForm(projectsNames);
+            TaskRegisterForm taskRegisterForm = new TaskRegisterForm(this.db, this.employee);
             taskRegisterForm.RegisterEventHandler += TaskRegisterForm_RegisterEventHandler;
             taskRegisterForm.Show();
         }
