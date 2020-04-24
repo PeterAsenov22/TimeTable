@@ -56,9 +56,10 @@
                 {
                     string employeeEGN = dataGridView1[3, e.RowIndex].Value.ToString();
                     Employee employee = db.Employees.First(em => em.EmployeeEgn == employeeEGN);
+                    List<string> positions = this.db.Employees.Select(em => em.EmployeePosition).Distinct().ToList();
                     if (employee != null)
                     {
-                        EmployeeEditForm employeeEditForm = new EmployeeEditForm(e.RowIndex, employee, this.employeesEGNs);
+                        EmployeeEditForm employeeEditForm = new EmployeeEditForm(e.RowIndex, employee, this.employeesEGNs, positions);
                         employeeEditForm.EditEventHandler += EmployeeEditForm_EditEventHandler;
                         employeeEditForm.Show();
                     }

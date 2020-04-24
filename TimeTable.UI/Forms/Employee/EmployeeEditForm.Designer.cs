@@ -33,7 +33,6 @@
             this.lastNameLabel = new System.Windows.Forms.Label();
             this.positionLabel = new System.Windows.Forms.Label();
             this.egnLabel = new System.Windows.Forms.Label();
-            this.positionTextBox = new System.Windows.Forms.TextBox();
             this.egnTextBox = new System.Windows.Forms.TextBox();
             this.editEmployeeBtn = new System.Windows.Forms.Button();
             this.surnameLabel = new System.Windows.Forms.Label();
@@ -41,6 +40,7 @@
             this.surnameTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.hireDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.positionComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lastNameTextBox
@@ -85,13 +85,6 @@
             this.egnLabel.Size = new System.Drawing.Size(38, 17);
             this.egnLabel.TabIndex = 41;
             this.egnLabel.Text = "EGN";
-            // 
-            // positionTextBox
-            // 
-            this.positionTextBox.Location = new System.Drawing.Point(453, 185);
-            this.positionTextBox.Name = "positionTextBox";
-            this.positionTextBox.Size = new System.Drawing.Size(213, 22);
-            this.positionTextBox.TabIndex = 40;
             // 
             // egnTextBox
             // 
@@ -149,18 +142,26 @@
             this.hireDateTimePicker.Size = new System.Drawing.Size(213, 22);
             this.hireDateTimePicker.TabIndex = 46;
             // 
+            // positionComboBox
+            // 
+            this.positionComboBox.FormattingEnabled = true;
+            this.positionComboBox.Location = new System.Drawing.Point(453, 185);
+            this.positionComboBox.Name = "positionComboBox";
+            this.positionComboBox.Size = new System.Drawing.Size(213, 24);
+            this.positionComboBox.TabIndex = 47;
+            // 
             // EmployeeEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.positionComboBox);
             this.Controls.Add(this.hireDateTimePicker);
             this.Controls.Add(this.lastNameTextBox);
             this.Controls.Add(this.hireDateLabel);
             this.Controls.Add(this.lastNameLabel);
             this.Controls.Add(this.positionLabel);
             this.Controls.Add(this.egnLabel);
-            this.Controls.Add(this.positionTextBox);
             this.Controls.Add(this.egnTextBox);
             this.Controls.Add(this.editEmployeeBtn);
             this.Controls.Add(this.surnameLabel);
@@ -181,7 +182,6 @@
         private System.Windows.Forms.Label lastNameLabel;
         private System.Windows.Forms.Label positionLabel;
         private System.Windows.Forms.Label egnLabel;
-        private System.Windows.Forms.TextBox positionTextBox;
         private System.Windows.Forms.TextBox egnTextBox;
         private System.Windows.Forms.Button editEmployeeBtn;
         private System.Windows.Forms.Label surnameLabel;
@@ -189,5 +189,6 @@
         private System.Windows.Forms.TextBox surnameTextBox;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.DateTimePicker hireDateTimePicker;
+        private System.Windows.Forms.ComboBox positionComboBox;
     }
 }

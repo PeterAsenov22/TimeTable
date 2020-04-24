@@ -13,13 +13,18 @@
             this.db = db;
         }
 
+        private void EmployeeRegisterForm_Load(object sender, EventArgs e)
+        {
+            positionComboBox.DataSource = this.db.Employees.Select(em => em.EmployeePosition).Distinct().ToList();
+        }
+
         private void registerEmployeeBtn_Click(object sender, EventArgs e)
         {
             string name = nameTextBox.Text;
             string surname = surnameTextBox.Text;
             string lastName = lastNameTextBox.Text;
             string egn = egnTextBox.Text;
-            string position = positionTextBox.Text;
+            string position = positionComboBox.Text;
             DateTime hireDate = hireDateTimePicker.Value;
 
             if (IsValidName(name, "Name")

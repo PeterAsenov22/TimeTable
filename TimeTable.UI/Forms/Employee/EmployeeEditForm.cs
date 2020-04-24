@@ -10,21 +10,24 @@
         private int rowIndex;
         private Employee employee;
         private HashSet<string> employeesEGNs;
-        public EmployeeEditForm(int rowIndex, Employee employee, HashSet<string> employeesEGNs)
+        private List<string> positions;
+        public EmployeeEditForm(int rowIndex, Employee employee, HashSet<string> employeesEGNs, List<string> positions)
         {
             InitializeComponent();
             this.rowIndex = rowIndex;
             this.employee = employee;
             this.employeesEGNs = employeesEGNs;
+            this.positions = positions;
         }
 
         private void EmployeeEditForm_Load(object sender, EventArgs e)
         {
+            positionComboBox.DataSource = positions;
             nameTextBox.Text = employee.EmployeeName;
             surnameTextBox.Text = employee.EmployeeSurname;
             lastNameTextBox.Text = employee.EmployeeLastname;
             egnTextBox.Text = employee.EmployeeEgn;
-            positionTextBox.Text = employee.EmployeePosition;
+            positionComboBox.SelectedItem = employee.EmployeePosition;
             hireDateTimePicker.Value = employee.EmployeeHiredate != null
                 ? (DateTime) employee.EmployeeHiredate
                 : DateTime.Today;
@@ -45,7 +48,7 @@
             string surname = surnameTextBox.Text;
             string lastName = lastNameTextBox.Text;
             string egn = egnTextBox.Text;
-            string position = positionTextBox.Text;
+            string position = positionComboBox.Text;
             DateTime hireDate = hireDateTimePicker.Value;
 
             if (IsValidName(name, "Name")

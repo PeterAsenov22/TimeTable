@@ -35,6 +35,8 @@
             this.projectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registerProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.clearSearchBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.searchBtn = new System.Windows.Forms.Button();
             this.searchTextBox = new System.Windows.Forms.TextBox();
@@ -46,8 +48,6 @@
             this.startDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.endDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maxWH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clearSearchBtn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -85,7 +85,7 @@
             // 
             this.searchEmployeesToolStripMenuItem.Name = "searchEmployeesToolStripMenuItem";
             this.searchEmployeesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.searchEmployeesToolStripMenuItem.Text = "Search Employees";
+            this.searchEmployeesToolStripMenuItem.Text = "All Employees";
             this.searchEmployeesToolStripMenuItem.Click += new System.EventHandler(this.searchEmployeesToolStripMenuItem_Click);
             // 
             // projectsToolStripMenuItem
@@ -99,7 +99,7 @@
             // registerProjectToolStripMenuItem
             // 
             this.registerProjectToolStripMenuItem.Name = "registerProjectToolStripMenuItem";
-            this.registerProjectToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.registerProjectToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.registerProjectToolStripMenuItem.Text = "Register Project";
             this.registerProjectToolStripMenuItem.Click += new System.EventHandler(this.registerProjectToolStripMenuItem_Click);
             // 
@@ -117,6 +117,25 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Find Project";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(379, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Search Term:";
+            // 
+            // clearSearchBtn
+            // 
+            this.clearSearchBtn.Location = new System.Drawing.Point(822, 19);
+            this.clearSearchBtn.Name = "clearSearchBtn";
+            this.clearSearchBtn.Size = new System.Drawing.Size(120, 30);
+            this.clearSearchBtn.TabIndex = 4;
+            this.clearSearchBtn.Text = "Clear Search";
+            this.clearSearchBtn.UseVisualStyleBackColor = true;
+            this.clearSearchBtn.Click += new System.EventHandler(this.clearSearchBtn_Click);
             // 
             // label1
             // 
@@ -218,25 +237,6 @@
             this.maxWH.Name = "maxWH";
             this.maxWH.ReadOnly = true;
             this.maxWH.Width = 125;
-            // 
-            // clearSearchBtn
-            // 
-            this.clearSearchBtn.Location = new System.Drawing.Point(822, 19);
-            this.clearSearchBtn.Name = "clearSearchBtn";
-            this.clearSearchBtn.Size = new System.Drawing.Size(120, 30);
-            this.clearSearchBtn.TabIndex = 4;
-            this.clearSearchBtn.Text = "Clear Search";
-            this.clearSearchBtn.UseVisualStyleBackColor = true;
-            this.clearSearchBtn.Click += new System.EventHandler(this.clearSearchBtn_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(379, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 17);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Search Term:";
             // 
             // MainForm
             // 
