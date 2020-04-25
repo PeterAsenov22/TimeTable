@@ -123,6 +123,57 @@
                 .Where(ph => ph.ProjectTaskdate.Month == (int)month && ph.ProjectTaskdate.Year == year).Sum(ph => ph.ProjectHours1);
 
             workedHoursLabel.Text = $"Hours Worked: {hoursWorked}";
+
+            ProjectMonths projectMonth = this.db.ProjectMonths
+                .FirstOrDefault(
+                  pm => pm.ProjectId == this.project.ProjectId
+                  && pm.ProjectYear == year
+                  && pm.ProjectMonth == (int)month
+                );
+
+            if (projectMonth != null && projectMonth.ProjectMonthStatus == "C")
+            {
+                finishMonthBtn.Visible = false;
+                finishedMonthLabel.Visible = true;
+            }
+            else
+            {
+                finishMonthBtn.Visible = true;
+                finishedMonthLabel.Visible = false;
+            }
+        }
+
+        private void finishMonthBtn_Click(object sender, EventArgs e)
+        {
+            int year = int.Parse(yearComboBox.SelectedItem.ToString());
+            Months month = (Months)Enum.Parse(typeof(Months), monthComboBox.Text);
+            ProjectMonths projectMonth = this.db.ProjectMonths
+                .FirstOrDefault(
+                  pm => pm.ProjectId == this.project.ProjectId
+                  && pm.ProjectYear == year
+                  && pm.ProjectMonth == (int)month
+                );
+
+            if (projectMonth == null)
+            {
+                projectMonth = new ProjectMonths()
+                {
+                    ProjectId = this.project.ProjectId,
+                    ProjectMonth = (int)month,
+                    ProjectYear = year,
+                    ProjectMonthStatus = "C"
+                };
+
+                this.db.ProjectMonths.Add(projectMonth);
+            }
+            else
+            {
+                projectMonth.ProjectMonthStatus = "C";
+            }
+
+            this.db.SaveChanges();
+            finishMonthBtn.Visible = false;
+            finishedMonthLabel.Visible = true;
         }
     }
 }

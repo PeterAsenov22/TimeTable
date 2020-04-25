@@ -33,7 +33,8 @@
             this.inProgressRadioButton = new System.Windows.Forms.RadioButton();
             this.finishedRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.finishedMonthLabel = new System.Windows.Forms.Label();
+            this.finishMonthBtn = new System.Windows.Forms.Button();
             this.workedHoursLabel = new System.Windows.Forms.Label();
             this.monthComboBox = new System.Windows.Forms.ComboBox();
             this.monthLabel = new System.Windows.Forms.Label();
@@ -87,7 +88,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.finishedMonthLabel);
+            this.groupBox1.Controls.Add(this.finishMonthBtn);
             this.groupBox1.Controls.Add(this.workedHoursLabel);
             this.groupBox1.Controls.Add(this.monthComboBox);
             this.groupBox1.Controls.Add(this.monthLabel);
@@ -100,14 +102,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "View Worked Hours Per Month";
             // 
-            // button1
+            // finishedMonthLabel
             // 
-            this.button1.Location = new System.Drawing.Point(351, 134);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 50);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Finish Month";
-            this.button1.UseVisualStyleBackColor = true;
+            this.finishedMonthLabel.AutoSize = true;
+            this.finishedMonthLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.finishedMonthLabel.ForeColor = System.Drawing.Color.Red;
+            this.finishedMonthLabel.Location = new System.Drawing.Point(317, 151);
+            this.finishedMonthLabel.Name = "finishedMonthLabel";
+            this.finishedMonthLabel.Size = new System.Drawing.Size(146, 17);
+            this.finishedMonthLabel.TabIndex = 6;
+            this.finishedMonthLabel.Text = "The month is finished!";
+            this.finishedMonthLabel.Visible = false;
+            // 
+            // finishMonthBtn
+            // 
+            this.finishMonthBtn.Location = new System.Drawing.Point(351, 134);
+            this.finishMonthBtn.Name = "finishMonthBtn";
+            this.finishMonthBtn.Size = new System.Drawing.Size(112, 50);
+            this.finishMonthBtn.TabIndex = 5;
+            this.finishMonthBtn.Text = "Finish Month";
+            this.finishMonthBtn.UseVisualStyleBackColor = true;
+            this.finishMonthBtn.Click += new System.EventHandler(this.finishMonthBtn_Click);
             // 
             // workedHoursLabel
             // 
@@ -209,8 +224,9 @@
         private System.Windows.Forms.Label monthLabel;
         private System.Windows.Forms.Label yearLabel;
         private System.Windows.Forms.ComboBox yearComboBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button finishMonthBtn;
         private System.Windows.Forms.Button changeStatusBtn;
         private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Label finishedMonthLabel;
     }
 }
