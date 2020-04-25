@@ -125,6 +125,12 @@
 
         private bool IsValidDate(DateTime taskDate, Project project)
         {
+            if (taskDate.CompareTo(DateTime.Now) > 0)
+            {
+                MessageBox.Show("Tasks for future dates can not be added!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             if (taskDate.CompareTo(this.employee.EmployeeHiredate) < 0)
             {
                 MessageBox.Show("The Task Date is before the hiring of the employee!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
