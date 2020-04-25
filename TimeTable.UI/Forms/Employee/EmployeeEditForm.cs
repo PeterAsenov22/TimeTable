@@ -55,7 +55,8 @@
                 && IsValidName(surname, "Surname")
                 && IsValidName(lastName, "Last Name")
                 && IsValidEgn(egn)
-                && IsValidPosition(position))
+                && IsValidPosition(position)
+                && IsValidHireDate(hireDate, (DateTime)employee.EmployeeHiredate))
             {
                 employee.EmployeeName = name;
                 employee.EmployeeSurname = surname;
@@ -153,6 +154,17 @@
                   MessageBoxIcon.Error
                 );
 
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsValidHireDate(DateTime hireDate, DateTime currentHireDate)
+        {
+            if (hireDate.CompareTo(currentHireDate) > 0)
+            {
+                MessageBox.Show($"The new Hire Date can only be earlier than the current one!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
