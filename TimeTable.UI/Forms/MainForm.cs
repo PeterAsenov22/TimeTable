@@ -130,11 +130,15 @@
                 {
                     decimal projectId = decimal.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
                     Project project = db.Projects.Find(projectId);
-                    if (project != null)
+                    if (project != null && project.ProjectStatus == "O")
                     {
                         ProjectEditForm projectEditForm = new ProjectEditForm(e.RowIndex, project, this.projectsIds, this.projectsNames);
                         projectEditForm.EditEventHandler += ProjectEditForm_EditEventHandler;
                         projectEditForm.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("The project is finished! Finished projects can not be edited.", "Finished Project", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else if (e.ColumnIndex == 7)

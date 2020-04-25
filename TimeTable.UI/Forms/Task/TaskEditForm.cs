@@ -12,6 +12,7 @@
         private string projectName;
         private Employee employee;
         private TimeTableContext db;
+        private Project project;
         public TaskEditForm(int rowIndex, ProjectHours task, string projectName, Employee employee)
         {
             InitializeComponent();
@@ -20,10 +21,17 @@
             this.projectName = projectName;
             this.employee = employee;
             this.db = new TimeTableContext();
+            this.project = this.db.Projects.Include(p => p.ProjectMonths).First(p => p.ProjectName == projectName);
         }
 
         private void TaskEditForm_Load(object sender, EventArgs e)
         {
+            if (project.ProjectStatus == "C")
+            {
+                MessageBox.Show($"The project is finished!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+
             projectTextBox.Text = this.projectName;
             taskTextBox.Text = this.task.ProjectTask;
             hoursTextBox.Text = this.task.ProjectHours1.ToString();
@@ -44,20 +52,13 @@
             int taskHours = 0;
             string task = taskTextBox.Text;
 
-            Project project = this.db.Projects.Include(p => p.ProjectMonths).First(p => p.ProjectName == projectName);
-            if (project.ProjectStatus == "C")
-            {
-                MessageBox.Show($"This project has finished!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             if (project.ProjectMonths.Any(pm => pm.ProjectMonth == this.task.ProjectTaskdate.Month && pm.ProjectYear == this.task.ProjectTaskdate.Year))
             {
                 ProjectMonths projectMonth = project.ProjectMonths
                     .First(pm => pm.ProjectMonth == this.task.ProjectTaskdate.Month && pm.ProjectYear == this.task.ProjectTaskdate.Year);
                 if (projectMonth.ProjectMonthStatus == "C")
                 {
-                    MessageBox.Show("This month is finished for this project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("This month is finished for the project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }

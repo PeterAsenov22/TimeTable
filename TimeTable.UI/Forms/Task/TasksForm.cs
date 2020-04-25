@@ -11,6 +11,7 @@
         private decimal projectId;
         private string projectName;
         private List<ProjectHours> tasks;
+        private TimeTableContext db;
         public TasksForm(Employee employee, decimal projectId, string projectName)
         {
             InitializeComponent();
@@ -18,6 +19,7 @@
             this.projectId = projectId;
             this.projectName = projectName;
             this.tasks = new List<ProjectHours>();
+            this.db = new TimeTableContext();
         }
 
         private void TasksForm_Load(object sender, EventArgs e)
@@ -70,6 +72,13 @@
                 }
                 else if (e.ColumnIndex == 5)
                 {
+                    Project project = this.db.Projects.First(p => p.ProjectName == this.projectName);
+                    if (project.ProjectStatus == "C")
+                    {
+                        MessageBox.Show($"The project is finished!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     DialogResult result = MessageBox.Show("Are you sure you want to delete this task ?", "Delete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
