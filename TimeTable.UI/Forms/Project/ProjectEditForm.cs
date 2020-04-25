@@ -53,7 +53,7 @@
             if (IsValidId(ref id)
                 && IsValidName(name)
                 && IsValidDescription(description)
-                && IsValidHours(ref maxHours)
+                && IsValidHours(ref maxHours, (decimal)project.ProjectMaxhours)
                 && IsValidEndDate(beginDate, endDate))
             {
                 project.ProjectId = id;
@@ -146,11 +146,17 @@
             return true;
         }
 
-        private bool IsValidHours(ref int maxHours)
+        private bool IsValidHours(ref int maxHours, decimal currentMaxHours)
         {
             if (!int.TryParse(maxWHTextBox.Text, out maxHours))
             {
                 MessageBox.Show("Please, fill in a whole number for Max Working Hours!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (maxHours < currentMaxHours)
+            {
+                MessageBox.Show("Max Working Hours per Employee cannot be decreased!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 

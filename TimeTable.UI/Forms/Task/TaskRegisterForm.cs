@@ -44,7 +44,7 @@
             Project project = this.db.Projects.Include(p => p.ProjectMonths).First(p => p.ProjectName == projectName);
             if (project.ProjectStatus == "C")
             {
-                MessageBox.Show($"Tasks can not be added to finished project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Tasks cannot be added to finished project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -127,7 +127,7 @@
         {
             if (taskDate.CompareTo(DateTime.Now) > 0)
             {
-                MessageBox.Show("Tasks for future dates can not be added!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Tasks for future dates cannot be added!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 

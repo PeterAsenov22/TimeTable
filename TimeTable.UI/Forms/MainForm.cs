@@ -138,7 +138,7 @@
                     }
                     else
                     {
-                        MessageBox.Show("The project is finished! Finished projects can not be edited.", "Finished Project", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("The project is finished! Finished projects cannot be edited.", "Finished Project", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else if (e.ColumnIndex == 7)
