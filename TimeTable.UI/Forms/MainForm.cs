@@ -43,7 +43,7 @@
             moreButtonColumn.UseColumnTextForButtonValue = true;
             dataGridView1.Columns.Add(moreButtonColumn);
 
-            this.projects = db.Projects.ToList();
+            this.projects = db.Projects.OrderBy(p => p.ProjectName).ToList();
             foreach (var project in this.projects)
             {
                 dataGridView1.Rows.Add(project.ToDataView());
@@ -82,41 +82,16 @@
 
         private void ProjectEditForm_EditEventHandler(object sender, ProjectEditForm.EditEventArgs args)
         {
-            try
-            {
-                db.SaveChanges();
-                dataGridView1.Rows.Remove(dataGridView1.Rows[args.RowIndex]);
-                dataGridView1.Rows.Insert(args.RowIndex, args.Project.ToDataView());
-                UpdateSets();
-                MessageBox.Show(
-                    $"Project \"{args.Project.ProjectName}\" was successfully edited!",
-                    "Successful Project Update",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
-            catch
-            {
-                MessageBox.Show("An error occurred while recording the changes! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+            dataGridView1.Rows.Remove(dataGridView1.Rows[args.RowIndex]);
+            dataGridView1.Rows.Insert(args.RowIndex, args.Project.ToDataView());
+            UpdateSets();
 
-        private void ProjectInfoForm_ChangeStatusEventHandler(object sender)
-        {
-            try
-            {
-                db.SaveChanges();
-                MessageBox.Show(
-                    $"Project Status was successfully updated!",
-                    "Successful Status Update",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
-            catch
-            {
-                MessageBox.Show("An error occurred while recording the changes! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            MessageBox.Show(
+                $"Project \"{args.Project.ProjectName}\" was successfully edited!",
+                "Successful Project Update",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -129,16 +104,11 @@
                 if (e.ColumnIndex == 6)
                 {
                     decimal projectId = decimal.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
-                    Project project = db.Projects.Find(projectId);
-                    if (project != null && project.ProjectStatus == "O")
+                    if (this.db.Projects.Any(p => p.ProjectId == projectId))
                     {
-                        ProjectEditForm projectEditForm = new ProjectEditForm(e.RowIndex, project, this.projectsIds, this.projectsNames);
+                        ProjectEditForm projectEditForm = new ProjectEditForm(e.RowIndex, projectId, this.projectsIds, this.projectsNames);
                         projectEditForm.EditEventHandler += ProjectEditForm_EditEventHandler;
                         projectEditForm.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("The project is finished! Finished projects cannot be edited.", "Finished Project", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else if (e.ColumnIndex == 7)
@@ -147,7 +117,6 @@
                     if (this.db.Projects.Any(p => p.ProjectId == projectId))
                     {
                         ProjectInfoForm projectInfoForm = new ProjectInfoForm(projectId);
-                        projectInfoForm.ChangeStatusEventHandler += ProjectInfoForm_ChangeStatusEventHandler;
                         projectInfoForm.Show();
                     }
                 }
@@ -234,6 +203,7 @@
 
         private void UpdateSets()
         {
+            this.projects = this.db.Projects.OrderBy(p => p.ProjectName).ToList();
             this.projectsIds.Clear();
             this.projectsNames.Clear();
 

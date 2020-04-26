@@ -7,21 +7,29 @@
     using Models;
     public partial class ProjectEditForm : Form
     {
+        private TimeTableContext db;
         private int rowIndex;
         private Project project;
         private HashSet<decimal> projectsIds;
-        private HashSet<string> projectsNames;
-        public ProjectEditForm(int rowIndex, Project project, HashSet<decimal> projectsIds, HashSet<string> projectsNames)
+        private HashSet<string> projectsNames;     
+        public ProjectEditForm(int rowIndex, decimal projectId, HashSet<decimal> projectsIds, HashSet<string> projectsNames)
         {
             InitializeComponent();
+            this.db = new TimeTableContext();
             this.rowIndex = rowIndex;
-            this.project = project;
             this.projectsIds = projectsIds;
             this.projectsNames = projectsNames;
+            this.project = this.db.Projects.Find(projectId);
         }
 
         private void ProjectEditForm_Load(object sender, EventArgs e)
         {
+            if (project.ProjectStatus == "C")
+            {
+                MessageBox.Show("The project is finished! Finished projects cannot be edited.", "Finished Project", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+
             titleLabel.Text = $"Project: {this.project.ProjectName.ToString()}";
             projectIdTextBox.Text = this.project.ProjectId.ToString();
             projectIdTextBox.Enabled = false;
@@ -67,8 +75,16 @@
                 args.RowIndex = rowIndex;
                 args.Project = project;
 
-                EditEventHandler?.Invoke(this, args);
-                this.Close();
+                try
+                {
+                    this.db.SaveChanges();
+                    EditEventHandler?.Invoke(this, args);
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("An error occurred while recording the changes! Please, try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

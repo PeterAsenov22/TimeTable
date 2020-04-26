@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Forms;
+    using Microsoft.EntityFrameworkCore;
     using Models;
     public partial class TasksForm : Form
     {
@@ -72,17 +73,28 @@
                 }
                 else if (e.ColumnIndex == 5)
                 {
-                    Project project = this.db.Projects.First(p => p.ProjectName == this.projectName);
+                    Project project = this.db.Projects.Include(p => p.ProjectMonths).First(p => p.ProjectName == this.projectName);
                     if (project.ProjectStatus == "C")
                     {
                         MessageBox.Show($"The project is finished!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
+                    ProjectHours task = this.tasks[e.RowIndex];
+                    if (project.ProjectMonths.Any(pm => pm.ProjectMonth == task.ProjectTaskdate.Month && pm.ProjectYear == task.ProjectTaskdate.Year))
+                    {
+                        ProjectMonths projectMonth = project.ProjectMonths
+                            .First(pm => pm.ProjectMonth == task.ProjectTaskdate.Month && pm.ProjectYear == task.ProjectTaskdate.Year);
+                        if (projectMonth.ProjectMonthStatus == "C")
+                        {
+                            MessageBox.Show("This month is finished for the project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+
                     DialogResult result = MessageBox.Show("Are you sure you want to delete this task ?", "Delete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        ProjectHours task = this.tasks[e.RowIndex];
                         var args = new DeleteEventArgs()
                         {
                             Task = task

@@ -52,9 +52,6 @@
             yearComboBox.SelectedIndex = 0;
         }
 
-        public delegate void ChangeStatusDelegate(object sender);
-        public event ChangeStatusDelegate ChangeStatusEventHandler;
-
         private void inProgressRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if ((this.project.ProjectStatus == "O" && inProgressRadioButton.Checked)
@@ -84,8 +81,15 @@
                 : "C";
 
                 this.project.ProjectStatus = newStatus;
-                ChangeStatusEventHandler?.Invoke(this);
+                db.SaveChanges();
                 this.changeStatusBtn.Enabled = false;
+
+                MessageBox.Show(
+                    $"Project Status was successfully updated!",
+                    "Successful Status Update",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );         
             }
         }
 

@@ -32,6 +32,17 @@
                 this.Close();
             }
 
+            if (project.ProjectMonths.Any(pm => pm.ProjectMonth == this.task.ProjectTaskdate.Month && pm.ProjectYear == this.task.ProjectTaskdate.Year))
+            {
+                ProjectMonths projectMonth = project.ProjectMonths
+                    .First(pm => pm.ProjectMonth == this.task.ProjectTaskdate.Month && pm.ProjectYear == this.task.ProjectTaskdate.Year);
+                if (projectMonth.ProjectMonthStatus == "C")
+                {
+                    MessageBox.Show("This month is finished for the project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                }
+            }
+
             projectTextBox.Text = this.projectName;
             taskTextBox.Text = this.task.ProjectTask;
             hoursTextBox.Text = this.task.ProjectHours1.ToString();
@@ -51,17 +62,6 @@
         {
             int taskHours = 0;
             string task = taskTextBox.Text;
-
-            if (project.ProjectMonths.Any(pm => pm.ProjectMonth == this.task.ProjectTaskdate.Month && pm.ProjectYear == this.task.ProjectTaskdate.Year))
-            {
-                ProjectMonths projectMonth = project.ProjectMonths
-                    .First(pm => pm.ProjectMonth == this.task.ProjectTaskdate.Month && pm.ProjectYear == this.task.ProjectTaskdate.Year);
-                if (projectMonth.ProjectMonthStatus == "C")
-                {
-                    MessageBox.Show("This month is finished for the project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
 
             decimal employeeMaxWorkingHoursOnProject = project.ProjectMaxhours != null
             ? (decimal)project.ProjectMaxhours
