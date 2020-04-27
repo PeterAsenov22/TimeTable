@@ -55,7 +55,7 @@
 
             if (IsValidTask(task)
                 && IsValidHours(ref taskHours, employeeCurrentWorkingHoursOnProject, employeeMaxWorkingHoursOnProject)
-                && IsValidDate(taskDate, project))
+                && IsValidDate(taskDate, project, employee))
             {
                 var projectTask = new ProjectHours()
                 {
@@ -123,7 +123,7 @@
             return true;
         }
 
-        private bool IsValidDate(DateTime taskDate, Project project)
+        private bool IsValidDate(DateTime taskDate, Project project, Employee employee)
         {
             if (taskDate.CompareTo(DateTime.Now) > 0)
             {
@@ -134,6 +134,16 @@
             if (taskDate.CompareTo(this.employee.EmployeeHiredate) < 0)
             {
                 MessageBox.Show("The Task Date is before the hiring of the employee!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (this.employee.ProjectHours.Any(ph =>
+              ph.ProjectId == project.ProjectId
+              && ph.ProjectTaskdate.Year == taskDate.Year
+              && ph.ProjectTaskdate.Month == taskDate.Month
+              && ph.ProjectTaskdate.Day == taskDate.Day))
+            {
+                MessageBox.Show("The employee has already performed a task on this day!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
