@@ -70,7 +70,7 @@
             this.editTaskBtn.Name = "editTaskBtn";
             this.editTaskBtn.Size = new System.Drawing.Size(159, 33);
             this.editTaskBtn.TabIndex = 50;
-            this.editTaskBtn.Text = "Edit Task";
+            this.editTaskBtn.Text = "Save";
             this.editTaskBtn.UseVisualStyleBackColor = true;
             this.editTaskBtn.Click += new System.EventHandler(this.editTaskBtn_Click);
             // 

@@ -114,7 +114,7 @@
             this.editProjectBtn.Name = "editProjectBtn";
             this.editProjectBtn.Size = new System.Drawing.Size(159, 33);
             this.editProjectBtn.TabIndex = 23;
-            this.editProjectBtn.Text = "Edit Project";
+            this.editProjectBtn.Text = "Save";
             this.editProjectBtn.UseVisualStyleBackColor = true;
             this.editProjectBtn.Click += new System.EventHandler(this.editProjectBtn_Click);
             // 

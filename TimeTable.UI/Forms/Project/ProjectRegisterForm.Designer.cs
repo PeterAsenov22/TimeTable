@@ -49,7 +49,7 @@
             this.registerProjectBtn.Name = "registerProjectBtn";
             this.registerProjectBtn.Size = new System.Drawing.Size(159, 33);
             this.registerProjectBtn.TabIndex = 10;
-            this.registerProjectBtn.Text = "Register Project";
+            this.registerProjectBtn.Text = "Save";
             this.registerProjectBtn.UseVisualStyleBackColor = true;
             this.registerProjectBtn.Click += new System.EventHandler(this.registerProjectBtn_Click);
             // 

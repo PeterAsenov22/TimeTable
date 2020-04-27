@@ -70,7 +70,7 @@
             this.addTaskBtn.Name = "addTaskBtn";
             this.addTaskBtn.Size = new System.Drawing.Size(159, 33);
             this.addTaskBtn.TabIndex = 38;
-            this.addTaskBtn.Text = "Add Task";
+            this.addTaskBtn.Text = "Save";
             this.addTaskBtn.UseVisualStyleBackColor = true;
             this.addTaskBtn.Click += new System.EventHandler(this.addTaskBtn_Click);
             // 

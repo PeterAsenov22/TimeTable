@@ -99,7 +99,7 @@
             this.editEmployeeBtn.Name = "editEmployeeBtn";
             this.editEmployeeBtn.Size = new System.Drawing.Size(159, 33);
             this.editEmployeeBtn.TabIndex = 38;
-            this.editEmployeeBtn.Text = "Edit Employee";
+            this.editEmployeeBtn.Text = "Save";
             this.editEmployeeBtn.UseVisualStyleBackColor = true;
             this.editEmployeeBtn.Click += new System.EventHandler(this.editEmployeeBtn_Click);
             // 

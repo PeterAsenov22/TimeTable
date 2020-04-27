@@ -92,7 +92,7 @@
             this.registerEmployeeBtn.Name = "registerEmployeeBtn";
             this.registerEmployeeBtn.Size = new System.Drawing.Size(159, 33);
             this.registerEmployeeBtn.TabIndex = 23;
-            this.registerEmployeeBtn.Text = "Register Employee";
+            this.registerEmployeeBtn.Text = "Save";
             this.registerEmployeeBtn.UseVisualStyleBackColor = true;
             this.registerEmployeeBtn.Click += new System.EventHandler(this.registerEmployeeBtn_Click);
             // 
