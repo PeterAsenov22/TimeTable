@@ -61,8 +61,7 @@
         {
             var senderGrid = (DataGridView)sender;
 
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0 && e.RowIndex < this.tasks.Count)
             {
                 if (e.ColumnIndex == 4)
                 {

@@ -101,9 +101,10 @@
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                if (e.ColumnIndex == 6)
+                var projectIdCell = dataGridView1[0, e.RowIndex].Value;
+                if (e.ColumnIndex == 6 &&  projectIdCell != null)
                 {
-                    decimal projectId = decimal.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
+                    decimal projectId = decimal.Parse(projectIdCell.ToString());
                     if (this.db.Projects.Any(p => p.ProjectId == projectId))
                     {
                         ProjectEditForm projectEditForm = new ProjectEditForm(e.RowIndex, projectId, this.projectsIds, this.projectsNames);
@@ -111,9 +112,9 @@
                         projectEditForm.Show();
                     }
                 }
-                else if (e.ColumnIndex == 7)
+                else if (e.ColumnIndex == 7 && projectIdCell != null)
                 {
-                    decimal projectId = decimal.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
+                    decimal projectId = decimal.Parse(projectIdCell.ToString());
                     if (this.db.Projects.Any(p => p.ProjectId == projectId))
                     {
                         ProjectInfoForm projectInfoForm = new ProjectInfoForm(projectId);

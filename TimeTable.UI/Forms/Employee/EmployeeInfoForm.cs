@@ -53,12 +53,16 @@
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0 && e.ColumnIndex == 3)
             {
-                string projectName = dataGridView1[0, e.RowIndex].Value.ToString();
-                decimal projectId = this.db.Projects.Where(p => p.ProjectName == projectName).Select(p => p.ProjectId).FirstOrDefault();
-                TasksForm tasksForm = new TasksForm(this.employee, projectId, projectName);
-                tasksForm.EditEventHandler += TasksForm_EditEventHandler;
-                tasksForm.DeleteEventHandler += TasksForm_DeleteEventHandler;
-                tasksForm.Show();
+                var projectNameCell = dataGridView1[0, e.RowIndex].Value;
+                if (projectNameCell != null)
+                {
+                    string projectName = projectNameCell.ToString();
+                    decimal projectId = this.db.Projects.Where(p => p.ProjectName == projectName).Select(p => p.ProjectId).FirstOrDefault();
+                    TasksForm tasksForm = new TasksForm(this.employee, projectId, projectName);
+                    tasksForm.EditEventHandler += TasksForm_EditEventHandler;
+                    tasksForm.DeleteEventHandler += TasksForm_DeleteEventHandler;
+                    tasksForm.Show();
+                }             
             }
         }
 

@@ -28,6 +28,7 @@
             {
                 MessageBox.Show("The project is finished! Finished projects cannot be edited.", "Finished Project", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
+                return;
             }
 
             titleLabel.Text = $"Project: {this.project.ProjectName.ToString()}";

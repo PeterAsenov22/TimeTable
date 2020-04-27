@@ -30,6 +30,7 @@
             {
                 MessageBox.Show($"The project is finished!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
+                return;
             }
 
             if (project.ProjectMonths.Any(pm => pm.ProjectMonth == this.task.ProjectTaskdate.Month && pm.ProjectYear == this.task.ProjectTaskdate.Year))
@@ -40,6 +41,7 @@
                 {
                     MessageBox.Show("This month is finished for the project!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.Close();
+                    return;
                 }
             }
 

@@ -52,9 +52,10 @@
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                if (e.ColumnIndex == 6)
+                var employeeEgnCell = dataGridView1[3, e.RowIndex].Value;
+                if (e.ColumnIndex == 6 && employeeEgnCell != null)
                 {
-                    string employeeEGN = dataGridView1[3, e.RowIndex].Value.ToString();
+                    string employeeEGN = employeeEgnCell.ToString();
                     Employee employee = db.Employees.First(em => em.EmployeeEgn == employeeEGN);
                     List<string> positions = this.db.Employees.Select(em => em.EmployeePosition).Distinct().ToList();
                     if (employee != null)
@@ -64,9 +65,9 @@
                         employeeEditForm.Show();
                     }
                 }
-                else if (e.ColumnIndex == 7)
+                else if (e.ColumnIndex == 7 && employeeEgnCell != null)
                 {
-                    string employeeEGN = dataGridView1[3, e.RowIndex].Value.ToString();
+                    string employeeEGN = employeeEgnCell.ToString();
                     EmployeeInfoForm employeeInfoForm = new EmployeeInfoForm(employeeEGN);
                     employeeInfoForm.Show();
                 }
