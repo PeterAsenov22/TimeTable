@@ -152,10 +152,10 @@
                 switch (searchBy)
                 {
                     case "Name":
-                        filteredProjects = this.projects.Where(p => p.ProjectName.Contains(searchTerm)).ToList();
+                        filteredProjects = this.projects.Where(p => p.ProjectName.ToLower().Contains(searchTerm.ToLower())).ToList();
                         break;
                     case "Description":
-                        filteredProjects = this.projects.Where(p => p.ProjectDescription.Contains(searchTerm)).ToList();
+                        filteredProjects = this.projects.Where(p => p.ProjectDescription.ToLower().Contains(searchTerm.ToLower())).ToList();
                         break;
                     case "Status":
                         if (searchTerm != "In-Progress" && searchTerm != "Finished")

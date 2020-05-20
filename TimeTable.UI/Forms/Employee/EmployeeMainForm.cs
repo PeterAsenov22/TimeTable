@@ -99,7 +99,7 @@
         {
             List<Employee> filteredProjects = new List<Employee>();
             string searchBy = searchComboBox.Text;
-            string searchTerm = searchTextBox.Text;
+            string searchTerm = searchTextBox.Text.ToLower();
 
             if (string.IsNullOrEmpty(searchTerm) || string.IsNullOrWhiteSpace(searchTerm))
             {
@@ -110,19 +110,19 @@
                 switch (searchBy)
                 {
                     case "Name":
-                        filteredProjects = this.employees.Where(em => em.EmployeeName.Contains(searchTerm)).ToList();
+                        filteredProjects = this.employees.Where(em => em.EmployeeName.ToLower().Contains(searchTerm)).ToList();
                         break;
                     case "Surname":
-                        filteredProjects = this.employees.Where(em => em.EmployeeSurname.Contains(searchTerm)).ToList();
+                        filteredProjects = this.employees.Where(em => em.EmployeeSurname.ToLower().Contains(searchTerm)).ToList();
                         break;
                     case "Last Name":
-                        filteredProjects = this.employees.Where(em => em.EmployeeLastname.Contains(searchTerm)).ToList();
+                        filteredProjects = this.employees.Where(em => em.EmployeeLastname.ToLower().Contains(searchTerm)).ToList();
                         break;
                     case "EGN":
                         filteredProjects = this.employees.Where(em => em.EmployeeEgn.Contains(searchTerm)).ToList();
                         break;
                     case "Position":
-                        filteredProjects = this.employees.Where(em => em.EmployeePosition.Contains(searchTerm)).ToList();
+                        filteredProjects = this.employees.Where(em => em.EmployeePosition.ToLower().Contains(searchTerm)).ToList();
                         break;
                     case "Hire Date":
                         filteredProjects = this.employees.Where(em => em.EmployeeHiredate != null
